@@ -35,9 +35,7 @@ class BaseCollectionViewFlowLayout: UICollectionViewFlowLayout {
         totalItemsInSection = collectionView!.numberOfItems(inSection: 0)
         columnsYoffset = Array(repeating: 0, count: totalItemsInSection)
         
-        guard totalItemsInSection > 0
-            //, totalColumns > 0
-            else { return }
+        guard totalItemsInSection > 0 else { return }
         calculateItemSize()
         
         var itemIndex = 0

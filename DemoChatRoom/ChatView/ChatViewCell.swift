@@ -74,7 +74,7 @@ class ChatViewCell: UICollectionViewCell {
     private func handleMessage() {
         guard let message = self.messageType else { return }
         
-        messageTopLabel.text     = message.sender.displayName
+        messageTopLabel.text    = message.sender.displayName
         messageBottomLabel.text = message.sentDate
         cellTopLabel.text       = message.messageId
         

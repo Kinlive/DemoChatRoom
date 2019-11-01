@@ -77,9 +77,9 @@
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="ZPM-xR-0vp" secondAttribute="bottom" id="CLy-Yi-Q6T"/>
+                            <constraint firstItem="ZPM-xR-0vp" firstAttribute="bottom" secondItem="6Tk-OE-BBY" secondAttribute="bottom" id="Hxi-K2-Mij"/>
                             <constraint firstItem="ZPM-xR-0vp" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="Pnt-nC-09h"/>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="ph3-w4-8aR" secondAttribute="bottom" id="aaA-N2-ZhB"/>
+                            <constraint firstItem="ZPM-xR-0vp" firstAttribute="bottom" secondItem="ph3-w4-8aR" secondAttribute="bottom" id="aaA-N2-ZhB"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="ZPM-xR-0vp" secondAttribute="trailing" id="qha-sq-aRa"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="ph3-w4-8aR" secondAttribute="trailing" id="sni-PU-JdR"/>
                             <constraint firstItem="ph3-w4-8aR" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="xbz-G9-frW"/>
@@ -90,6 +90,7 @@
                     <connections>
                         <outlet property="chatCollectionView" destination="ZPM-xR-0vp" id="KXf-dQ-XuK"/>
                         <outlet property="keyinTextField" destination="JM7-le-vcf" id="jwz-in-5WC"/>
+                        <outlet property="messageSafeAreaBottomConstraint" destination="Hxi-K2-Mij" id="dZO-O4-Ekr"/>
                         <outlet property="optionsButton" destination="qZh-bx-Iip" id="s3B-a6-rAs"/>
                         <outlet property="passMessageButton" destination="03G-Dj-ARD" id="3mw-0c-Oe6"/>
                         <outlet property="textInputBaseView" destination="ph3-w4-8aR" id="liV-OH-ypb"/>

@@ -10,6 +10,9 @@ import UIKit
 
 class ViewController: UIViewController {
 
+    @IBOutlet weak var messageSafeAreaBottomConstraint: NSLayoutConstraint!
+    //@IBOutlet weak var messageSuperBottomConstraint: NSLayoutConstraint!
+    
     @IBOutlet weak var chatCollectionView: UICollectionView!
     
     @IBOutlet weak var textInputBaseView: UIView!
@@ -45,6 +48,12 @@ class ViewController: UIViewController {
         chatCollectionView.dataSource = self
         chatCollectionView.register(UINib(nibName: "ChatViewCell", bundle: nil), forCellWithReuseIdentifier: "ChatViewCell")
         
+        let tap = UITapGestureRecognizer(target: self, action: #selector(tapMessageBackground(recognizer:)))
+        chatCollectionView.addGestureRecognizer(tap)
+    }
+    
+    @objc func tapMessageBackground(recognizer: UITapGestureRecognizer) {
+        keyinTextField.endEditing(true)
     }
     
     func initKeyinText() {
@@ -53,14 +62,20 @@ class ViewController: UIViewController {
         
         optionsButton.addTarget(self, action: #selector(passBotMessage), for: .touchUpInside)
         
+        // add observe
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow(notification:)), name: UIResponder.keyboardWillShowNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide(notification:)), name: UIResponder.keyboardWillHideNotification, object: nil)
+        
     }
     
     @objc func passMessage() {
+        keyinTextField.endEditing(true)
         let message = MyMessage(kind: .text(keyinTextField.text ?? ""), sender: selfSender, messageId: "", sentDate: Date().prettyDate())
         dataSource.append(message)
     }
 
     @objc func passBotMessage() {
+        //keyinTextField.endEditing(true)
         let message = MyMessage(kind: .text("BOt\(keyinTextField.text ?? "")"), sender: botSender, messageId: "", sentDate: Date().prettyDate())
         dataSource.append(message)
     }
@@ -70,7 +85,7 @@ class ViewController: UIViewController {
         chatCollectionView.performBatchUpdates({
             
             chatCollectionView.insertItems(at: [IndexPath(item: dataSource.count - 1, section: 0)])
-            chatCollectionView.reloadData()
+            //chatCollectionView.reloadData()
 //            if dataSource.count >= 2 {
 //                chatCollectionView.reloadItems(at: [IndexPath(item: dataSource.count - 2, section: 0)])
 //            }
@@ -82,11 +97,31 @@ class ViewController: UIViewController {
     
     public func scrollToBottom(animated: Bool = false) {
         let collectionViewContentHeight = chatCollectionView.contentSize.height
-        let keyinHeight = textInputBaseView.frame.height
         
         chatCollectionView.performBatchUpdates(nil) { [weak self] _ in
             self?.chatCollectionView.scrollRectToVisible(CGRect(x: 0.0, y: collectionViewContentHeight - 1.0, width: 1.0, height: 1.0), animated: animated)
         }
+    }
+    
+    @objc func keyboardWillShow(notification: Notification) {
+        guard let keyboardFrame = notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue else { return }
+        let keyboardRect = keyboardFrame.cgRectValue
+        let keyboardHeight = keyboardRect.height
+        
+        messageSafeAreaBottomConstraint.constant = -keyboardHeight + view.safeAreaInsets.bottom
+        
+        UIView.animate(withDuration: 0.3, animations: {
+            self.view.layoutIfNeeded()
+        }) { (end) in
+            self.scrollToBottom(animated: true)
+        }
+    }
+    
+    @objc func keyboardWillHide(notification: Notification) {
+        messageSafeAreaBottomConstraint.constant = 0
+       UIView.animate(withDuration: 0.3) {
+           self.view.layoutIfNeeded()
+       }
     }
 }
 
