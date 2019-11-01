@@ -24,18 +24,23 @@
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="Xbl-Y1-y1O" userLabel="leftStackView">
                                         <rect key="frame" x="0.0" y="0.0" width="40" height="157"/>
                                         <subviews>
-                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="mez-d0-ZE8" userLabel="leftAvatarView">
-                                                <rect key="frame" x="0.0" y="0.0" width="40" height="40"/>
-                                                <color key="backgroundColor" systemColor="systemGreenColor" red="0.20392156862745098" green="0.7803921568627451" blue="0.34901960784313724" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="vQe-Mv-Q10" userLabel="leftTopEmptyView">
+                                                <rect key="frame" x="0.0" y="0.0" width="40" height="55"/>
+                                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                             </view>
-                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ngU-qz-u7d" userLabel="leftEmptyView">
-                                                <rect key="frame" x="0.0" y="40" width="40" height="117"/>
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="mez-d0-ZE8" userLabel="leftAvatarView">
+                                                <rect key="frame" x="0.0" y="55" width="40" height="40"/>
+                                                <color key="backgroundColor" systemColor="systemGreenColor" red="0.20392156862745098" green="0.7803921568627451" blue="0.34901960784313724" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="40" id="jcg-75-zxv"/>
+                                                </constraints>
+                                            </view>
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ngU-qz-u7d" userLabel="leftBottomEmptyView">
+                                                <rect key="frame" x="0.0" y="95" width="40" height="62"/>
                                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                             </view>
                                         </subviews>
                                         <constraints>
-                                            <constraint firstItem="mez-d0-ZE8" firstAttribute="width" secondItem="Xbl-Y1-y1O" secondAttribute="width" id="JNa-0A-w5R"/>
-                                            <constraint firstItem="mez-d0-ZE8" firstAttribute="height" secondItem="Xbl-Y1-y1O" secondAttribute="width" id="Jqz-gB-aoG"/>
                                             <constraint firstAttribute="width" constant="40" id="ZJD-kP-gdP"/>
                                         </constraints>
                                     </stackView>
@@ -84,7 +89,7 @@
                                                         <rect key="frame" x="5" y="5" width="289" height="47"/>
                                                     </imageView>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="messages" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NMr-y0-rad">
-                                                        <rect key="frame" x="5" y="5" width="274" height="47"/>
+                                                        <rect key="frame" x="5" y="5" width="77.5" height="47"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                         <nil key="textColor"/>
                                                         <nil key="highlightedColor"/>
@@ -93,7 +98,7 @@
                                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                                 <constraints>
                                                     <constraint firstItem="NMr-y0-rad" firstAttribute="top" secondItem="4S3-vs-yLW" secondAttribute="top" constant="5" id="LW4-xb-1yE"/>
-                                                    <constraint firstAttribute="trailing" secondItem="NMr-y0-rad" secondAttribute="trailing" constant="20" id="WFd-o7-8A9"/>
+                                                    <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="NMr-y0-rad" secondAttribute="trailing" constant="5" id="WFd-o7-8A9"/>
                                                     <constraint firstItem="zjN-kg-45J" firstAttribute="leading" secondItem="4S3-vs-yLW" secondAttribute="leading" constant="5" id="WJX-vE-5cw"/>
                                                     <constraint firstAttribute="trailing" secondItem="zjN-kg-45J" secondAttribute="trailing" constant="5" id="iGt-l4-WfN"/>
                                                     <constraint firstItem="NMr-y0-rad" firstAttribute="leading" secondItem="4S3-vs-yLW" secondAttribute="leading" constant="5" id="kgU-Da-EkI"/>
@@ -143,22 +148,31 @@
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="f11-ST-gIc" userLabel="rightStackView">
                                         <rect key="frame" x="339" y="0.0" width="40" height="157"/>
                                         <subviews>
-                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="FVj-Xr-26R" userLabel="rightAvatarView">
-                                                <rect key="frame" x="0.0" y="0.0" width="40" height="40"/>
-                                                <color key="backgroundColor" systemColor="systemOrangeColor" red="1" green="0.58431372549019611" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="5nA-Rn-YDH" userLabel="rightTopEmptyView">
+                                                <rect key="frame" x="0.0" y="0.0" width="40" height="50"/>
+                                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                             </view>
-                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Fhg-PF-bpQ" userLabel="rightEmptyView">
-                                                <rect key="frame" x="0.0" y="40" width="40" height="117"/>
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="FVj-Xr-26R" userLabel="rightAvatarView">
+                                                <rect key="frame" x="0.0" y="50" width="40" height="40"/>
+                                                <color key="backgroundColor" systemColor="systemOrangeColor" red="1" green="0.58431372549019611" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="40" id="Zek-lF-vUd"/>
+                                                </constraints>
+                                            </view>
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Fhg-PF-bpQ" userLabel="rightBottomEmptyView">
+                                                <rect key="frame" x="0.0" y="90" width="40" height="67"/>
                                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                             </view>
                                         </subviews>
                                         <constraints>
-                                            <constraint firstItem="FVj-Xr-26R" firstAttribute="height" secondItem="f11-ST-gIc" secondAttribute="width" id="KIu-xy-2NS"/>
                                             <constraint firstAttribute="width" constant="40" id="dGA-L8-Bpc"/>
-                                            <constraint firstItem="FVj-Xr-26R" firstAttribute="width" secondItem="f11-ST-gIc" secondAttribute="width" id="wn6-EC-FOw"/>
                                         </constraints>
                                     </stackView>
                                 </subviews>
+                                <constraints>
+                                    <constraint firstItem="mez-d0-ZE8" firstAttribute="top" secondItem="NMr-y0-rad" secondAttribute="top" id="8ni-p0-oXn"/>
+                                    <constraint firstItem="FVj-Xr-26R" firstAttribute="top" secondItem="4S3-vs-yLW" secondAttribute="top" id="9eB-mT-VM6"/>
+                                </constraints>
                             </stackView>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>

@@ -23,6 +23,8 @@
 		FE31D8FF236ACC29004E8A74 /* Extension+String.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE31D8FE236ACC29004E8A74 /* Extension+String.swift */; };
 		FE31D901236AD641004E8A74 /* MyUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE31D900236AD641004E8A74 /* MyUser.swift */; };
 		FE31D903236AD685004E8A74 /* MyMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE31D902236AD685004E8A74 /* MyMessage.swift */; };
+		FE31D905236C0219004E8A74 /* Extension+UIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE31D904236C0219004E8A74 /* Extension+UIView.swift */; };
+		FE31D907236C1625004E8A74 /* BaseChatViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE31D906236C1624004E8A74 /* BaseChatViewCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -65,6 +67,8 @@
 		FE31D8FE236ACC29004E8A74 /* Extension+String.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extension+String.swift"; sourceTree = "<group>"; };
 		FE31D900236AD641004E8A74 /* MyUser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyUser.swift; sourceTree = "<group>"; };
 		FE31D902236AD685004E8A74 /* MyMessage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyMessage.swift; sourceTree = "<group>"; };
+		FE31D904236C0219004E8A74 /* Extension+UIView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extension+UIView.swift"; sourceTree = "<group>"; };
+		FE31D906236C1624004E8A74 /* BaseChatViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseChatViewCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -153,6 +157,7 @@
 				FE31D8F4236AB452004E8A74 /* ChatViewCell.xib */,
 				FE31D900236AD641004E8A74 /* MyUser.swift */,
 				FE31D902236AD685004E8A74 /* MyMessage.swift */,
+				FE31D906236C1624004E8A74 /* BaseChatViewCell.swift */,
 			);
 			path = ChatView;
 			sourceTree = "<group>";
@@ -164,6 +169,7 @@
 				FE31D8F8236ABCD3004E8A74 /* ChatCollectionLayout.swift */,
 				FE31D8FC236AC7DE004E8A74 /* MessageType.swift */,
 				FE31D8FE236ACC29004E8A74 /* Extension+String.swift */,
+				FE31D904236C0219004E8A74 /* Extension+UIView.swift */,
 			);
 			path = Tools;
 			sourceTree = "<group>";
@@ -301,9 +307,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				FE31D8FF236ACC29004E8A74 /* Extension+String.swift in Sources */,
+				FE31D907236C1625004E8A74 /* BaseChatViewCell.swift in Sources */,
 				FE31D8FD236AC7DE004E8A74 /* MessageType.swift in Sources */,
 				FE31D8F5236AB452004E8A74 /* ChatViewCell.swift in Sources */,
 				FE31D903236AD685004E8A74 /* MyMessage.swift in Sources */,
+				FE31D905236C0219004E8A74 /* Extension+UIView.swift in Sources */,
 				FE31D8C7236A8CE6004E8A74 /* ViewController.swift in Sources */,
 				FE31D8F9236ABCD3004E8A74 /* ChatCollectionLayout.swift in Sources */,
 				FE31D8C3236A8CE6004E8A74 /* AppDelegate.swift in Sources */,

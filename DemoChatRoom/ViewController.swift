@@ -11,7 +11,6 @@ import UIKit
 class ViewController: UIViewController {
 
     @IBOutlet weak var messageSafeAreaBottomConstraint: NSLayoutConstraint!
-    //@IBOutlet weak var messageSuperBottomConstraint: NSLayoutConstraint!
     
     @IBOutlet weak var chatCollectionView: UICollectionView!
     
@@ -70,20 +69,20 @@ class ViewController: UIViewController {
     
     @objc func passMessage() {
         keyinTextField.endEditing(true)
-        let message = MyMessage(kind: .text(keyinTextField.text ?? ""), sender: selfSender, messageId: "", sentDate: Date().prettyDate())
+        let message = MyMessage(kind: .text(keyinTextField.text ?? ""), sender: selfSender, messageId: Date().longDate(), sentDate: Date().prettyDate())
         dataSource.append(message)
     }
 
     @objc func passBotMessage() {
         //keyinTextField.endEditing(true)
-        let message = MyMessage(kind: .text("BOt\(keyinTextField.text ?? "")"), sender: botSender, messageId: "", sentDate: Date().prettyDate())
+        let message = MyMessage(kind: .text("BOt\(keyinTextField.text ?? "")"), sender: botSender, messageId: Date().longDate(), sentDate: Date().prettyDate())
         dataSource.append(message)
     }
     
     
     func prepareUpdateDisplay() {
+        
         chatCollectionView.performBatchUpdates({
-            
             chatCollectionView.insertItems(at: [IndexPath(item: dataSource.count - 1, section: 0)])
             //chatCollectionView.reloadData()
 //            if dataSource.count >= 2 {
@@ -91,7 +90,7 @@ class ViewController: UIViewController {
 //            }
             
         }) { [weak self] (end) in
-            self?.scrollToBottom(animated: true)
+           self?.scrollToBottom(animated: true)
         }
     }
     
@@ -162,5 +161,11 @@ extension Date {
         
         return dateFormatter.string(from: self)
         
+    }
+    
+    func longDate() -> String {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
+        return dateFormatter.string(from: self)
     }
 }

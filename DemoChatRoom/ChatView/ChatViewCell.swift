@@ -64,7 +64,7 @@ class ChatViewCell: UICollectionViewCell {
         // Initialization code
         
     }
-
+    
     func setupMessage(messageType: MessageType, at indexPath: IndexPath) {
         self.messageType = messageType
         self.indexPath = indexPath
@@ -100,6 +100,9 @@ class ChatViewCell: UICollectionViewCell {
         
         leftAvatarView.backgroundColor = senderIsUser ? .clear : .green
         rightAvatarView.backgroundColor = senderIsUser ? .orange : .clear
+        
+        leftAvatarView.setCorner(radius: leftAvatarView.frame.height * 0.5)
+        rightAvatarView.setCorner(radius: rightAvatarView.frame.height * 0.5)
     }
     
 }

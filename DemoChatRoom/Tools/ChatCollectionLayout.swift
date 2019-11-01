@@ -64,17 +64,11 @@ class ChatCollectionLayout: BaseCollectionViewFlowLayout {
             
         case .photo:
             break
-        case .custom(let anything):
+        case .custom:
             break
         }
         
         return size
     }
-    
-//    public func updateDataSource() {
-//        if let delegate = delegate {
-//            self.dataSource = delegate.collectionLayout(self)
-//        }
-//    }
     
 }
