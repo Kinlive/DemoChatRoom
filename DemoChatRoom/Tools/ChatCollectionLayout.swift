@@ -10,12 +10,17 @@ import UIKit
 
 protocol ChatCollectionLayoutDelegate: class {
     func collectionLayout(_ layout: ChatCollectionLayout) -> [MessageType]
+    func layoutWithKeyInHeight(_ layout: ChatCollectionLayout) -> CGFloat
 }
 
 class ChatCollectionLayout: BaseCollectionViewFlowLayout {
 
-    public private(set) var dataSource: [MessageType] = []
-    public private(set) var messageFont: UIFont = .systemFont(ofSize: 15)
+    public var dataSource: [MessageType] {
+        get {
+            return delegate?.collectionLayout(self) ?? []
+        }
+    }
+    public private(set) var messageFont: UIFont = .systemFont(ofSize: 17)
     
     public private(set) weak var delegate: ChatCollectionLayoutDelegate?
     
@@ -25,9 +30,10 @@ class ChatCollectionLayout: BaseCollectionViewFlowLayout {
     
     convenience init(_ layoutDelegate: ChatCollectionLayoutDelegate) {
         self.init()
-        
+        //totalColumns = 0
         self.delegate = layoutDelegate
-        dataSource = layoutDelegate.collectionLayout(self)
+        self.messageInputViewsHeight = layoutDelegate.layoutWithKeyInHeight(self)
+        //dataSource = layoutDelegate.collectionLayout(self)
     }
     
     required init?(coder: NSCoder) {
@@ -39,17 +45,17 @@ class ChatCollectionLayout: BaseCollectionViewFlowLayout {
         let data = dataSource[indexPath.row]
         let dataSize = calculateItemSize(with: data.kind)
         
-        return CGRect(x: 0, y: columnYoffset, width: dataSize.width, height: dataSize.height)
+        return CGRect(x: 0, y: dataSize.height * CGFloat(indexPath.row), width: dataSize.width, height: dataSize.height)
     }
     
     
     private func calculateItemSize(with kind: MessageKind) -> CGSize {
         var size: CGSize = .zero
-        let itemWidth = collectionView!.bounds.width - contentInsets.left - contentInsets.right
+        let itemWidth = collectionView!.frame.width - contentInsets.left - contentInsets.right
         // leftStackView width , contentlabel left/right padding, rightStackViewWidth.
-        let messageContentWidth = collectionView!.bounds.width - 40 - 10 - 40
-        // middle stackViews subviews height.
-        let othersHeights: CGFloat = 25 * 4
+        let messageContentWidth = itemWidth - 40 - 10 - 40 - 20
+        // middle stackViews subviews height, and paddings.
+        let othersHeights: CGFloat = 25 * 4 + 10 + contentInsets.top + contentInsets.bottom
         
         switch kind {
         case .text(let text):
@@ -65,10 +71,10 @@ class ChatCollectionLayout: BaseCollectionViewFlowLayout {
         return size
     }
     
-    public func updateDataSource() {
-        if let delegate = delegate {
-            self.dataSource = delegate.collectionLayout(self)
-        }
-    }
+//    public func updateDataSource() {
+//        if let delegate = delegate {
+//            self.dataSource = delegate.collectionLayout(self)
+//        }
+//    }
     
 }

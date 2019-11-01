@@ -36,23 +36,68 @@
                                     </collectionViewCell>
                                 </cells>
                             </collectionView>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ph3-w4-8aR" userLabel="textInputBaseView">
+                                <rect key="frame" x="0.0" y="802" width="414" height="60"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qZh-bx-Iip">
+                                        <rect key="frame" x="5" y="5" width="50" height="50"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" secondItem="qZh-bx-Iip" secondAttribute="height" id="cLB-tH-IjU"/>
+                                        </constraints>
+                                        <state key="normal" title="+"/>
+                                    </button>
+                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="輸入訊息" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="JM7-le-vcf">
+                                        <rect key="frame" x="60" y="5" width="304" height="50"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits"/>
+                                    </textField>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="03G-Dj-ARD">
+                                        <rect key="frame" x="369" y="5" width="40" height="50"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="40" id="K1Y-AK-y9i"/>
+                                        </constraints>
+                                        <state key="normal" title="&gt;&gt;"/>
+                                    </button>
+                                </subviews>
+                                <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="60" id="HZ0-sN-9X3"/>
+                                    <constraint firstItem="JM7-le-vcf" firstAttribute="top" secondItem="ph3-w4-8aR" secondAttribute="top" constant="5" id="Jc8-W8-vxF"/>
+                                    <constraint firstAttribute="trailing" secondItem="03G-Dj-ARD" secondAttribute="trailing" constant="5" id="Khy-mG-rSa"/>
+                                    <constraint firstAttribute="bottom" secondItem="qZh-bx-Iip" secondAttribute="bottom" constant="5" id="LeO-5k-fqR"/>
+                                    <constraint firstAttribute="bottom" secondItem="03G-Dj-ARD" secondAttribute="bottom" constant="5" id="NaI-C7-WQZ"/>
+                                    <constraint firstItem="qZh-bx-Iip" firstAttribute="leading" secondItem="ph3-w4-8aR" secondAttribute="leading" constant="5" id="PAa-qi-wjA"/>
+                                    <constraint firstAttribute="bottom" secondItem="JM7-le-vcf" secondAttribute="bottom" constant="5" id="QQh-ke-18V"/>
+                                    <constraint firstItem="qZh-bx-Iip" firstAttribute="top" secondItem="ph3-w4-8aR" secondAttribute="top" constant="5" id="bgu-v7-xCn"/>
+                                    <constraint firstItem="JM7-le-vcf" firstAttribute="leading" secondItem="qZh-bx-Iip" secondAttribute="trailing" constant="5" id="fhr-lu-AcX"/>
+                                    <constraint firstItem="03G-Dj-ARD" firstAttribute="leading" secondItem="JM7-le-vcf" secondAttribute="trailing" constant="5" id="uUk-6D-7th"/>
+                                    <constraint firstItem="03G-Dj-ARD" firstAttribute="top" secondItem="ph3-w4-8aR" secondAttribute="top" constant="5" id="uzy-FO-c7B"/>
+                                </constraints>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="ZPM-xR-0vp" secondAttribute="bottom" id="CLy-Yi-Q6T"/>
                             <constraint firstItem="ZPM-xR-0vp" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="Pnt-nC-09h"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="ph3-w4-8aR" secondAttribute="bottom" id="aaA-N2-ZhB"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="ZPM-xR-0vp" secondAttribute="trailing" id="qha-sq-aRa"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="ph3-w4-8aR" secondAttribute="trailing" id="sni-PU-JdR"/>
+                            <constraint firstItem="ph3-w4-8aR" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="xbz-G9-frW"/>
                             <constraint firstItem="ZPM-xR-0vp" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="zbh-sQ-vH2"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
                     <connections>
                         <outlet property="chatCollectionView" destination="ZPM-xR-0vp" id="KXf-dQ-XuK"/>
+                        <outlet property="keyinTextField" destination="JM7-le-vcf" id="jwz-in-5WC"/>
+                        <outlet property="optionsButton" destination="qZh-bx-Iip" id="s3B-a6-rAs"/>
+                        <outlet property="passMessageButton" destination="03G-Dj-ARD" id="3mw-0c-Oe6"/>
+                        <outlet property="textInputBaseView" destination="ph3-w4-8aR" id="liV-OH-ypb"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="139" y="122"/>
+            <point key="canvasLocation" x="137.68115942028987" y="121.875"/>
         </scene>
     </scenes>
 </document>

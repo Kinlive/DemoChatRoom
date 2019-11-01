@@ -30,7 +30,7 @@ class ChatViewCell: UICollectionViewCell {
     @IBOutlet weak var cellTopLabel: UILabel!
     
     @IBOutlet weak var messageTopView: UIView!
-    @IBOutlet weak var messagTopLabel: UILabel!
+    @IBOutlet weak var messageTopLabel: UILabel!
     
     @IBOutlet weak var messageContentView: UIView!
     @IBOutlet weak var messageContentImageView: UIImageView!
@@ -74,9 +74,11 @@ class ChatViewCell: UICollectionViewCell {
     private func handleMessage() {
         guard let message = self.messageType else { return }
         
-        messagTopLabel.text     = message.sender.displayName
+        messageTopLabel.text     = message.sender.displayName
         messageBottomLabel.text = message.sentDate
         cellTopLabel.text       = message.messageId
+        
+        handleDisplay(sender: message.sender)
         
         switch message.kind {
         case .text(let message):
@@ -85,6 +87,19 @@ class ChatViewCell: UICollectionViewCell {
         default:
             break
         }
+    }
+    
+    private func handleDisplay(sender: SenderType) {
+        
+        let senderIsUser = sender.senderId == "11111"
+        
+        messageTopLabel.textAlignment = senderIsUser ? .right : .left
+        messageLabel.textAlignment = senderIsUser ? .right : .left
+        messageBottomLabel.textAlignment = senderIsUser ? .right : .left
+        cellBottomLabel.textAlignment = senderIsUser ? .right : .left
+        
+        leftAvatarView.backgroundColor = senderIsUser ? .clear : .green
+        rightAvatarView.backgroundColor = senderIsUser ? .orange : .clear
     }
     
 }

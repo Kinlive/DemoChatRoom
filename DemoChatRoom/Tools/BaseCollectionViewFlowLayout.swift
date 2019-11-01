@@ -11,28 +11,33 @@ import UIKit
 class BaseCollectionViewFlowLayout: UICollectionViewFlowLayout {
     
     private var layoutMap = [IndexPath : UICollectionViewLayoutAttributes]()
-    private var columnsYoffset: [CGFloat]!
+    private var columnsYoffset: [CGFloat] = []
     private var contentSize: CGSize = .zero
+    var messageInputViewsHeight: CGFloat = 0
     
     private(set) var totalItemsInSection: Int = 0
     
-    var totalColumns = 0
+    //var totalColumns = 0
     var interItemSpacing: CGFloat = 8
     var contentInsets: UIEdgeInsets {
         return collectionView!.contentInset
     }
     
     override var collectionViewContentSize: CGSize {
-        return contentSize
+        return CGSize(width: contentSize.width, height: contentSize.height + messageInputViewsHeight)
+        // 60 means keyin baseView's height
     }
     
     override func prepare() {
         
         layoutMap.removeAll()
-        columnsYoffset = Array(repeating: 0, count: totalColumns)
-        totalItemsInSection = collectionView!.numberOfItems(inSection: 0)
         
-        guard totalItemsInSection > 0, totalColumns > 0 else { return }
+        totalItemsInSection = collectionView!.numberOfItems(inSection: 0)
+        columnsYoffset = Array(repeating: 0, count: totalItemsInSection)
+        
+        guard totalItemsInSection > 0
+            //, totalColumns > 0
+            else { return }
         calculateItemSize()
         
         var itemIndex = 0
@@ -77,7 +82,7 @@ class BaseCollectionViewFlowLayout: UICollectionViewFlowLayout {
     
     // Abstract Methods
     func columnIndexForItemAt(indexPath: IndexPath) -> Int {
-        return indexPath.item % totalColumns
+        return indexPath.item % totalItemsInSection
     }
     
     func calculateItemFrame(indexPath: IndexPath, columnIndex: Int, columnYoffset: CGFloat) -> CGRect {
