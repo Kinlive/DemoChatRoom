@@ -29,7 +29,7 @@ class BaseCollectionViewFlowLayout: UICollectionViewFlowLayout {
     }
     
     override func prepare() {
-        
+    
         layoutMap.removeAll()
         
         totalItemsInSection = collectionView!.numberOfItems(inSection: 0)
@@ -88,5 +88,6 @@ class BaseCollectionViewFlowLayout: UICollectionViewFlowLayout {
     }
     
     func calculateItemSize() { }
-
 }
+
+

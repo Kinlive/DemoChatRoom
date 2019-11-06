@@ -91,6 +91,7 @@ class ViewController: UIViewController {
             
         }) { [weak self] (end) in
            self?.scrollToBottom(animated: true)
+            
         }
     }
     
@@ -107,7 +108,12 @@ class ViewController: UIViewController {
         let keyboardRect = keyboardFrame.cgRectValue
         let keyboardHeight = keyboardRect.height
         
-        messageSafeAreaBottomConstraint.constant = -keyboardHeight + view.safeAreaInsets.bottom
+        if #available(iOS 11.0, *) {
+            messageSafeAreaBottomConstraint.constant = -keyboardHeight + view.safeAreaInsets.bottom
+        } else {
+            // Fallback on earlier versions
+            messageSafeAreaBottomConstraint.constant = -keyboardHeight + bottomLayoutGuide.length
+        }
         
         UIView.animate(withDuration: 0.3, animations: {
             self.view.layoutIfNeeded()

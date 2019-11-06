@@ -62,9 +62,14 @@ class ChatViewCell: UICollectionViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
+        contentView.layer.borderWidth = 2
+        contentView.layer.borderColor = UIColor.darkGray.cgColor
         
     }
     
+    override func apply(_ layoutAttributes: UICollectionViewLayoutAttributes) {
+        super.apply(layoutAttributes)
+    }
     func setupMessage(messageType: MessageType, at indexPath: IndexPath) {
         self.messageType = messageType
         self.indexPath = indexPath

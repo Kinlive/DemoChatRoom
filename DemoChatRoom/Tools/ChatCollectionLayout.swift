@@ -51,11 +51,11 @@ class ChatCollectionLayout: BaseCollectionViewFlowLayout {
     
     private func calculateItemSize(with kind: MessageKind) -> CGSize {
         var size: CGSize = .zero
-        let itemWidth = collectionView!.frame.width - contentInsets.left - contentInsets.right
+        let itemWidth = collectionView!.frame.width //- contentInsets.left - contentInsets.right
         // leftStackView width , contentlabel left/right padding, rightStackViewWidth.
         let messageContentWidth = itemWidth - 40 - 10 - 40 - 20
         // middle stackViews subviews height, and paddings.
-        let othersHeights: CGFloat = 25 * 4 + 10 + contentInsets.top + contentInsets.bottom
+        let othersHeights: CGFloat = 25 * 4 + 10 //+ contentInsets.top + contentInsets.bottom
         
         switch kind {
         case .text(let text):
