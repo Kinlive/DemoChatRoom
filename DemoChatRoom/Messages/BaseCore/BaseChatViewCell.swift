@@ -34,13 +34,6 @@ class BaseChatViewCell: UICollectionViewCell {
         return label
     }()
     
-    var messageLabel: UILabel = {
-       let label = UILabel()
-        //label.backgroundColor = .systemTeal
-        label.numberOfLines = 0
-        return label
-    }()
-    
     var messageBottomLabel: UILabel = {
         let label = UILabel()
         //label.backgroundColor = .systemGreen
@@ -83,13 +76,13 @@ class BaseChatViewCell: UICollectionViewCell {
     
     override func apply(_ layoutAttributes: UICollectionViewLayoutAttributes) {
         super.apply(layoutAttributes)
-        guard let attributes = layoutAttributes as? CustomLayoutAttributes else { return }
+        guard let attributes = layoutAttributes as? BaseMessageAttributes else { return }
         
         layoutAvatarView(attributes: attributes)
         layoutCellTopLabel(attributes: attributes)
         layoutMessageTopLabel(attributes: attributes)
         layoutMessageContainerView(attributes: attributes)
-        layoutMessageLabel(attributes: attributes)
+        
         layoutMessageBottomLabel(attributes: attributes)
         layoutCellBottomLabel(attributes: attributes)
         
@@ -99,19 +92,13 @@ class BaseChatViewCell: UICollectionViewCell {
         super.prepareForReuse()
         cellTopLabel.text = nil
         messageTopLabel.text = nil
-        messageLabel.text = nil
         messageBottomLabel.text = nil
         cellBottomLabel.text = nil
         
     }
     
     func configure(message: MessageType) {
-        switch message.kind {
-        case .text(let text):
-            messageLabel.text = text
-        default:
-            break
-        }
+        
         cellTopLabel.text = message.messageId
         messageTopLabel.text = message.sender.displayName
         
@@ -119,7 +106,7 @@ class BaseChatViewCell: UICollectionViewCell {
         cellBottomLabel.text = "已讀"
     }
     
-    private func addSubviews() {
+    func addSubviews() {
         
         contentView.addSubview(avatarView)
         contentView.addSubview(cellTopLabel)
@@ -131,7 +118,7 @@ class BaseChatViewCell: UICollectionViewCell {
     }
     
     // MARK: - Layout all subviews
-    private func layoutAvatarView(attributes: CustomLayoutAttributes) {
+    private func layoutAvatarView(attributes: BaseMessageAttributes) {
         
         var origin: CGPoint = .zero
         
@@ -163,7 +150,7 @@ class BaseChatViewCell: UICollectionViewCell {
         avatarView.frame = CGRect(origin: origin, size: attributes.avatarSize)
     }
     
-    private func layoutCellTopLabel(attributes: CustomLayoutAttributes) {
+    private func layoutCellTopLabel(attributes: BaseMessageAttributes) {
         cellTopLabel.textAlignment = attributes.cellTopAlignment.textAlignment
         
         var origin: CGPoint = .zero
@@ -172,7 +159,7 @@ class BaseChatViewCell: UICollectionViewCell {
         cellTopLabel.frame = CGRect(origin: origin, size: attributes.cellTopSize)
     }
     
-    private func layoutMessageTopLabel(attributes: CustomLayoutAttributes) {
+    private func layoutMessageTopLabel(attributes: BaseMessageAttributes) {
         messageTopLabel.textAlignment = attributes.messageTopAlignment.textAlignment
         var origin = CGPoint(x: 0, y: cellTopLabel.frame.maxY)
         
@@ -187,9 +174,8 @@ class BaseChatViewCell: UICollectionViewCell {
         messageTopLabel.frame = CGRect(origin: origin, size: attributes.messageTopSize)
     }
     
-    private func layoutMessageContainerView(attributes: CustomLayoutAttributes) {
+    private func layoutMessageContainerView(attributes: BaseMessageAttributes) {
         containerImageView.applyMaskStyle(attributes: attributes)
-        messageLabel.textAlignment = attributes.messageAlignment.textAlignment
         
         var origin = CGPoint(x: 0, y: messageTopLabel.frame.maxY)
         switch attributes.avatarPosition.horizontal {
@@ -203,15 +189,7 @@ class BaseChatViewCell: UICollectionViewCell {
         
     }
     
-    private func layoutMessageLabel(attributes: CustomLayoutAttributes) {
-        containerImageView.addSubview(messageLabel)
-        
-        let labelOrigin = CGPoint(x: attributes.messageAlignment.textInset.left,
-                                  y: attributes.messageAlignment.textInset.top)
-        messageLabel.frame = CGRect(origin: labelOrigin, size: attributes.messageLabelSize)
-    }
-    
-    private func layoutMessageBottomLabel(attributes: CustomLayoutAttributes) {
+    private func layoutMessageBottomLabel(attributes: BaseMessageAttributes) {
         messageBottomLabel.textAlignment = attributes.messageBottomAlignment.textAlignment
         var origin = CGPoint(x: 0, y: containerImageView.frame.maxY)
         
@@ -233,7 +211,7 @@ class BaseChatViewCell: UICollectionViewCell {
         messageBottomLabel.frame = CGRect(origin: origin, size: attributes.messageBottomSize)
     }
     
-    private func layoutCellBottomLabel(attributes: CustomLayoutAttributes) {
+    private func layoutCellBottomLabel(attributes: BaseMessageAttributes) {
         cellBottomLabel.textAlignment = attributes.cellBottomAlignment.textAlignment
         var origin = CGPoint(x: 0, y: messageBottomLabel.frame.maxY)
         // LINE style

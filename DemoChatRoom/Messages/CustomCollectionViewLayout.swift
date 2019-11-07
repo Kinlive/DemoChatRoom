@@ -11,7 +11,8 @@ import UIKit
 class CustomCollectionViewLayout: UICollectionViewFlowLayout {
 
     class override var layoutAttributesClass: AnyClass {
-        return CustomLayoutAttributes.self
+        
+        return BaseMessageAttributes.self
     }
     
     lazy var messageDataSource: MessageDataSource = {
@@ -23,11 +24,12 @@ class CustomCollectionViewLayout: UICollectionViewFlowLayout {
     }()
     
     override func layoutAttributesForElements(in rect: CGRect) -> [UICollectionViewLayoutAttributes]? {
-        guard let attributesArray = super.layoutAttributesForElements(in: rect) as? [CustomLayoutAttributes] else { return nil }
+        guard let attributesArray = super.layoutAttributesForElements(in: rect) as? [BaseMessageAttributes] else { return nil }
         
         for attributes in attributesArray where attributes.representedElementCategory == .cell {
             // calculate each attributes rect.
             textCalculator.configure(attributes: attributes)
+            
         }
         return attributesArray
     }
@@ -37,6 +39,9 @@ class CustomCollectionViewLayout: UICollectionViewFlowLayout {
         let calculator = TextMessageCalculator(layout: self)
         return calculator
     }()
+    
+    //lazy var CustomMessageCalculator
+    
     
     func sizeForItem(at indexPath: IndexPath) -> CGSize {
         return textCalculator.sizeForItem(at: indexPath)

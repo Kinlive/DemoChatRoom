@@ -111,12 +111,20 @@ extension MessageBaseViewController: UICollectionViewDataSource {
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        guard let dataSource = messageCollectionView.messageDataSource,
-            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "BaseChatViewCell", for: indexPath) as? BaseChatViewCell else { return BaseChatViewCell() }
-        let message = dataSource.message(at: indexPath, in: collectionView as! MessageCollectionView)
-        cell.configure(message: message)
+        guard let dataSource = messageCollectionView.messageDataSource
+            else { return BaseChatViewCell() }
         
-        return cell
+        let message = dataSource.message(at: indexPath, in: collectionView as! MessageCollectionView)
+        
+        switch message.kind {
+        case .text:
+            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "TextMessageCell", for: indexPath) as! TextMessageCell
+            cell.configure(message: message)
+            return cell
+        default: break
+        }
+        
+        return BaseChatViewCell()
     }
     
     

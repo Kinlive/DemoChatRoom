@@ -1,5 +1,5 @@
 //
-//  CustomLayoutAttributes.swift
+//  BaseMessageAttributes.swift
 //  DemoChatRoom
 //
 //  Created by Thinkpower on 2019/11/4.
@@ -8,7 +8,7 @@
 
 import UIKit
 
-class CustomLayoutAttributes: UICollectionViewLayoutAttributes {
+class BaseMessageAttributes: UICollectionViewLayoutAttributes {
 
     public var avatarSize: CGSize = .zero
     public var avatarPosition: AvatarPosition = .init(.leading)
@@ -33,7 +33,7 @@ class CustomLayoutAttributes: UICollectionViewLayoutAttributes {
     public var containerAlignment = LabelAlignment(textInset: .zero)
     
     override func copy(with zone: NSZone? = nil) -> Any {
-        let copy = super.copy(with: zone) as! CustomLayoutAttributes
+        let copy = super.copy(with: zone) as! BaseMessageAttributes
         // copy all custom properties of attributes
         // ...
         copy.avatarSize = avatarSize
@@ -56,7 +56,7 @@ class CustomLayoutAttributes: UICollectionViewLayoutAttributes {
     }
     
     override func isEqual(_ object: Any?) -> Bool {
-        if let attributes = object as? CustomLayoutAttributes {
+        if let attributes = object as? BaseMessageAttributes {
             // && compare other customs properties is equal with attributes.
             return super.isEqual(attributes) &&
             attributes.avatarPosition == avatarPosition &&

@@ -83,15 +83,15 @@ class BaseMessageCalculator {
     var incomingCellBottomAlignment = LabelAlignment(textAlignment: .left, textInset: .init(left: 42))
     var outgotingCellBottomAlignment = LabelAlignment(textAlignment: .right, textInset: .init(right: 42))
     
-    private var layout: CustomCollectionViewLayout
+    public var layout: CustomCollectionViewLayout
     
     init(layout: CustomCollectionViewLayout) {
         self.layout = layout
     }
     
-    
-    func configure(attributes: UICollectionViewLayoutAttributes) {
-        guard let attributes = attributes as? CustomLayoutAttributes else { return }
+    /// Should use ``super.configure()`` if overrided.
+    open func configure(attributes: UICollectionViewLayoutAttributes) {
+        guard let attributes = attributes as? BaseMessageAttributes else { return }
         guard let messageCollectionView = layout.collectionView as? MessageCollectionView,
             let dataSource = messageCollectionView.messageDataSource else { return }
         
@@ -111,15 +111,17 @@ class BaseMessageCalculator {
         // calculate size
         attributes.cellTopSize = cellTopSize(at: indexPath, of: message)
         attributes.messageTopSize = messageTopSize(at: indexPath, of: message)
-        attributes.messageLabelSize = messageLabelSize(of: message)
+        
         attributes.messageSize = messageContainerSize(at: indexPath, of: message)
         
         attributes.messageBottomSize = messageBottomSize(at: indexPath, of: message)
         attributes.cellBottomSize = cellBottomSize(at: indexPath, of: message)
         
     }
-    
-    func sizeForItem(at indexPath: IndexPath) -> CGSize {
+    /// Should use ``super.sizeForItem()`` if overrided.
+    ///
+    ///  the super.sizeForItem() added all height of cellTopSize, messageTopSize,  messageSize, messageBottomSize, cellBottomSize, just add your custom view's height if need new height .
+    open func sizeForItem(at indexPath: IndexPath) -> CGSize {
         
         let message = layout.messageDataSource.message(at: indexPath, in: layout.messageCollectionView)
         
@@ -130,7 +132,8 @@ class BaseMessageCalculator {
         let cellBottomSize = self.cellBottomSize(at: indexPath, of: message)
         
         let itemWidth = layout.messageCollectionView.frame.width - layout.messageCollectionView.contentInset.left - layout.messageCollectionView.contentInset.right
-        let itemHeight = layout.messageCollectionView.contentInset.top + cellTopSize.height + messageTopSize.height + messageSize.height + messageBottomSize.height + cellBottomSize.height + layout.messageCollectionView.contentInset.bottom
+        let itemHeight = layout.messageCollectionView.contentInset.top + cellTopSize.height + messageTopSize.height + messageSize.height +
+            messageBottomSize.height + cellBottomSize.height + layout.messageCollectionView.contentInset.bottom
         
         return CGSize(width: itemWidth, height: itemHeight)
     }
@@ -148,38 +151,11 @@ class BaseMessageCalculator {
                       height: 30)
     }
     
-    private func messageContainerSize(at indexPath: IndexPath, of message: MessageType) -> CGSize {
-        
-        var size: CGSize = .zero
-        
-        switch message.kind {
-        case .text:
-            let labelSize = messageLabelSize(of: message)
-            
-            size = CGSize(width: labelSize.width + bubbleImageIncomingPadding.horizontal,
-                          height: labelSize.height + bubbleImageIncomingPadding.vertical)
-        default:
-            break
-        }
-        
-        return size
+    /// Should override for implement new container size, default is zero.
+    open func messageContainerSize(at indexPath: IndexPath, of message: MessageType) -> CGSize {
+        return .zero
     }
     
-    private func messageLabelSize(of message: MessageType) -> CGSize {
-        guard case .text(let text) = message.kind else { return .zero }
-        let collectionView = layout.messageCollectionView
-        let limitWidth = collectionView.frame.width * 0.6
-        
-        var textWidth: CGFloat = 0
-        let aWidth = text.textWidth()
-        let oneLineHeight: CGFloat = 25
-        
-        textWidth = min(limitWidth, aWidth)
-        
-        let textHeight = max(text.height(withConstrainedWidth: textWidth, font: UIFont.systemFont(ofSize: 17)) + 5, oneLineHeight)
-        
-        return CGSize(width: textWidth, height: textHeight)
-    }
     
     private func messageBottomSize(at indexPath: IndexPath, of message: MessageType) -> CGSize {
         return CGSize(width: message.sentDate.textWidth(font: UIFont.systemFont(ofSize: 12)), height: 15)

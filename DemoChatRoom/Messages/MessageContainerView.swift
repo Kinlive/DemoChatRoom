@@ -23,7 +23,7 @@ class MessageContainerView: UIImageView {
         imageMask.frame = bounds
     }
     
-    func applyMaskStyle(attributes: CustomLayoutAttributes) {
+    func applyMaskStyle(attributes: BaseMessageAttributes) {
         
         let incoming = UIImage.bubbleOfIncoming(insets: attributes.messageAlignment.textInset)
         let outgoing = UIImage.bubbleOfOutgoing(insets: attributes.messageAlignment.textInset)
