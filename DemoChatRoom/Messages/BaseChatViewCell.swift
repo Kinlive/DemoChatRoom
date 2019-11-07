@@ -36,7 +36,7 @@ class BaseChatViewCell: UICollectionViewCell {
     
     var messageLabel: UILabel = {
        let label = UILabel()
-        label.backgroundColor = .systemTeal
+        //label.backgroundColor = .systemTeal
         label.numberOfLines = 0
         return label
     }()
@@ -60,17 +60,11 @@ class BaseChatViewCell: UICollectionViewCell {
         return label
     }()
     
-    var containerImageView: UIImageView = {
-       let view = UIImageView()
+    var containerImageView: MessageContainerView = {
+       let view = MessageContainerView()
         view.clipsToBounds = true
         view.layer.masksToBounds = true
         
-        return view
-    }()
-    
-    var containerBaseView: UIView = {
-       let view = UIView()
-        view.backgroundColor = UIColor.darkGray.withAlphaComponent(0.5)
         return view
     }()
     
@@ -94,12 +88,11 @@ class BaseChatViewCell: UICollectionViewCell {
         layoutAvatarView(attributes: attributes)
         layoutCellTopLabel(attributes: attributes)
         layoutMessageTopLabel(attributes: attributes)
+        layoutMessageContainerView(attributes: attributes)
         layoutMessageLabel(attributes: attributes)
         layoutMessageBottomLabel(attributes: attributes)
         layoutCellBottomLabel(attributes: attributes)
-        layoutContainerImageView(attributes: attributes)
         
-        layoutContainerBaseView(attributes: attributes)
     }
     
     override func prepareForReuse() {
@@ -126,26 +119,16 @@ class BaseChatViewCell: UICollectionViewCell {
         cellBottomLabel.text = "已讀"
     }
     
-    func layoutContainerBaseView(attributes: CustomLayoutAttributes) {
-        let indexPath = attributes.indexPath
-        
-        
-        
-    }
-    
     private func addSubviews() {
-        contentView.addSubview(containerBaseView)
+        
         contentView.addSubview(avatarView)
         contentView.addSubview(cellTopLabel)
         contentView.addSubview(messageTopLabel)
-        contentView.addSubview(messageLabel)
         contentView.addSubview(messageBottomLabel)
         contentView.addSubview(cellBottomLabel)
         contentView.addSubview(containerImageView)
         
-        
     }
-    
     
     // MARK: - Layout all subviews
     private func layoutAvatarView(attributes: CustomLayoutAttributes) {
@@ -168,8 +151,8 @@ class BaseChatViewCell: UICollectionViewCell {
             origin.y = attributes.avatarSize.height
             
         case .messageCenter:
-            origin.y = attributes.avatarSize.height + attributes.cellTopSize.height
-            
+            //origin.y = attributes.avatarSize.height + attributes.cellTopSize.height
+            origin.y = attributes.cellTopSize.height + attributes.messageSize.height
         case .messageBottom:
             origin.y = attributes.avatarSize.height + attributes.cellTopSize.height + attributes.messageSize.height
             
@@ -204,8 +187,10 @@ class BaseChatViewCell: UICollectionViewCell {
         messageTopLabel.frame = CGRect(origin: origin, size: attributes.messageTopSize)
     }
     
-    private func layoutMessageLabel(attributes: CustomLayoutAttributes) {
+    private func layoutMessageContainerView(attributes: CustomLayoutAttributes) {
+        containerImageView.applyMaskStyle(attributes: attributes)
         messageLabel.textAlignment = attributes.messageAlignment.textAlignment
+        
         var origin = CGPoint(x: 0, y: messageTopLabel.frame.maxY)
         switch attributes.avatarPosition.horizontal {
         case .leading:
@@ -214,27 +199,36 @@ class BaseChatViewCell: UICollectionViewCell {
         case .trailing:
             origin.x = contentView.frame.width - attributes.avatarSize.width - attributes.messageSize.width
         }
-        messageLabel.frame = CGRect(origin: origin, size: attributes.messageSize)
+        containerImageView.frame = CGRect(origin: origin, size: attributes.messageSize)
+        
+    }
+    
+    private func layoutMessageLabel(attributes: CustomLayoutAttributes) {
+        containerImageView.addSubview(messageLabel)
+        
+        let labelOrigin = CGPoint(x: attributes.messageAlignment.textInset.left,
+                                  y: attributes.messageAlignment.textInset.top)
+        messageLabel.frame = CGRect(origin: labelOrigin, size: attributes.messageLabelSize)
     }
     
     private func layoutMessageBottomLabel(attributes: CustomLayoutAttributes) {
         messageBottomLabel.textAlignment = attributes.messageBottomAlignment.textAlignment
-        var origin = CGPoint(x: 0, y: messageLabel.frame.maxY)
+        var origin = CGPoint(x: 0, y: containerImageView.frame.maxY)
         
         // LINE style
-        origin.y = messageLabel.frame.maxY - attributes.messageBottomSize.height * 2
+        origin.y = containerImageView.frame.maxY - attributes.messageBottomSize.height * 2
         let paddingWithMessageHorizontal: CGFloat = 5
         
         switch attributes.avatarPosition.horizontal {
         case .leading:
             //origin.x = avatarView.frame.maxX
             // LINE style
-            origin.x = messageLabel.frame.maxX + paddingWithMessageHorizontal
+            origin.x = containerImageView.frame.maxX + paddingWithMessageHorizontal
             
         case .trailing:
             //origin.x = contentView.frame.width - attributes.avatarSize.width - attributes.messageBottomSize.width
             // LINE style
-            origin.x = messageLabel.frame.minX - attributes.messageBottomSize.width - paddingWithMessageHorizontal
+            origin.x = containerImageView.frame.minX - attributes.messageBottomSize.width - paddingWithMessageHorizontal
         }
         messageBottomLabel.frame = CGRect(origin: origin, size: attributes.messageBottomSize)
     }
@@ -255,11 +249,6 @@ class BaseChatViewCell: UICollectionViewCell {
             origin.x = messageBottomLabel.frame.maxX - attributes.cellBottomSize.width
         }
         cellBottomLabel.frame = CGRect(origin: origin, size: attributes.cellBottomSize)
-    }
-    
-    private func layoutContainerImageView(attributes: CustomLayoutAttributes) {
-        let origin = CGPoint(x: avatarView.frame.maxX, y: messageLabel.frame.minY)
-        containerImageView.frame = CGRect(origin: origin, size: attributes.containerImageViewSize)
     }
     
 }

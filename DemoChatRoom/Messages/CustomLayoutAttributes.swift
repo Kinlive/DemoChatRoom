@@ -21,6 +21,7 @@ class CustomLayoutAttributes: UICollectionViewLayoutAttributes {
     
     public var messageSize: CGSize = .zero
     public var messageAlignment = LabelAlignment(textInset: .zero)
+    public var messageLabelSize: CGSize = .zero
     
     public var messageBottomSize: CGSize = .zero
     public var messageBottomAlignment = LabelAlignment(textInset: .zero)
@@ -43,6 +44,7 @@ class CustomLayoutAttributes: UICollectionViewLayoutAttributes {
         copy.messageTopAlignment = messageTopAlignment
         copy.messageAlignment = messageAlignment
         copy.messageSize = messageSize
+        copy.messageLabelSize = messageLabelSize
         copy.messageBottomSize = messageBottomSize
         copy.messageBottomAlignment = messageBottomAlignment
         copy.cellBottomSize = cellBottomSize
@@ -64,6 +66,7 @@ class CustomLayoutAttributes: UICollectionViewLayoutAttributes {
             attributes.messageTopAlignment == messageTopAlignment &&
             attributes.messageTopSize == messageTopSize &&
             attributes.messageAlignment == messageAlignment &&
+            attributes.messageLabelSize == messageLabelSize &&
             attributes.messageBottomAlignment == messageBottomAlignment &&
             attributes.messageBottomSize == messageBottomSize &&
             attributes.cellBottomAlignment == cellBottomAlignment &&

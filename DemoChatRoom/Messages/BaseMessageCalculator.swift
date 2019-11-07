@@ -56,16 +56,6 @@ extension LabelAlignment {
     }
 }
 
-extension UIEdgeInsets {
-    init(top: CGFloat = 0, left: CGFloat = 0, right: CGFloat = 0, bottom: CGFloat = 0) {
-        self.init()
-        self.top = top
-        self.left = left
-        self.right = right
-        self.bottom = bottom
-    }
-}
-
 // MARK: - BaseMessage calculator
 class BaseMessageCalculator {
     
@@ -81,8 +71,11 @@ class BaseMessageCalculator {
     var incomingMessageTopAlignment = LabelAlignment(textAlignment: .left, textInset: .init(left: 42))
     var outgoingMessageTopAlignment = LabelAlignment(textAlignment: .right, textInset: .init(right: 42))
     
-    var incomingMessagePadding: UIEdgeInsets = UIEdgeInsets(top: 5, left: 13, bottom: 5, right: 30)
-    var outgoingMessagePadding: UIEdgeInsets = UIEdgeInsets(top: 5, left: 30, bottom: 5, right: 13)
+    //var incomingMessagePadding: UIEdgeInsets = UIEdgeInsets(top: 5, left: 30, bottom: 5, right: 10)
+    //var outgoingMessagePadding: UIEdgeInsets = UIEdgeInsets(top: 5, left: 10, bottom: 5, right: 30)
+    
+    let bubbleImageIncomingPadding: UIEdgeInsets = UIEdgeInsets(top: 15, left: 24, bottom: 15, right: 17)
+    let bubbleImageOutgoingPadding: UIEdgeInsets = UIEdgeInsets(top: 15, left: 17, bottom: 15, right: 24)
     
     var incomingMessageBottomAlignment = LabelAlignment(textAlignment: .left, textInset: .init(left: 42))
     var outgoingMessageBottomAlignment = LabelAlignment(textAlignment: .right, textInset: .init(right: 42))
@@ -111,34 +104,90 @@ class BaseMessageCalculator {
         
         attributes.cellTopAlignment = isFromUser ? outgoingCellTopAlignment : incomingCellTopAlignment
         attributes.messageTopAlignment = isFromUser ? outgoingMessageTopAlignment : incomingMessageTopAlignment
-        attributes.messageAlignment = isFromUser ? LabelAlignment(textAlignment: .left, textInset: outgoingMessagePadding) : LabelAlignment(textAlignment: .left, textInset: incomingMessagePadding)
+        attributes.messageAlignment = isFromUser ? LabelAlignment(textAlignment: .left, textInset: bubbleImageOutgoingPadding) : LabelAlignment(textAlignment: .left, textInset: bubbleImageIncomingPadding)
         attributes.messageBottomAlignment = isFromUser ? outgoingMessageBottomAlignment : incomingMessageBottomAlignment
         attributes.cellBottomAlignment = isFromUser ? outgotingCellBottomAlignment : incomingCellBottomAlignment
         
-        if let messageLayoutDelegate = layout.messageLayoutDelegate {
-            attributes.cellTopSize = messageLayoutDelegate.cellTopSize(at: indexPath, of: message)
-            attributes.messageTopSize = messageLayoutDelegate.messageTopSize(at: indexPath, of: message)
-            attributes.messageSize = messageLayoutDelegate.messageLabelSize(at: indexPath, of: message)
-            
-            attributes.messageBottomSize = messageLayoutDelegate.messageBottomSize(at: indexPath, of: message)
-            attributes.cellBottomSize = messageLayoutDelegate.cellBottomSize(at: indexPath, of: message)
-        }
+        // calculate size
+        attributes.cellTopSize = cellTopSize(at: indexPath, of: message)
+        attributes.messageTopSize = messageTopSize(at: indexPath, of: message)
+        attributes.messageLabelSize = messageLabelSize(of: message)
+        attributes.messageSize = messageContainerSize(at: indexPath, of: message)
+        
+        attributes.messageBottomSize = messageBottomSize(at: indexPath, of: message)
+        attributes.cellBottomSize = cellBottomSize(at: indexPath, of: message)
         
     }
     
     func sizeForItem(at indexPath: IndexPath) -> CGSize {
-        guard let messageLayoutDelegate = layout.messageLayoutDelegate else { return .zero }
+        
         let message = layout.messageDataSource.message(at: indexPath, in: layout.messageCollectionView)
         
-        let cellTopSize = messageLayoutDelegate.cellTopSize(at: indexPath, of: message)
-        let messageTopSize = messageLayoutDelegate.messageTopSize(at: indexPath, of: message)
-        let messageSize = messageLayoutDelegate.messageLabelSize(at: indexPath, of: message)
-        let messageBottomSize = messageLayoutDelegate.messageBottomSize(at: indexPath, of: message)
-        let cellBottomSize = messageLayoutDelegate.cellBottomSize(at: indexPath, of: message)
+        let cellTopSize = self.cellTopSize(at: indexPath, of: message)
+        let messageTopSize = self.messageTopSize(at: indexPath, of: message)
+        let messageSize = messageContainerSize(at: indexPath, of: message)
+        let messageBottomSize = self.messageBottomSize(at: indexPath, of: message)
+        let cellBottomSize = self.cellBottomSize(at: indexPath, of: message)
         
         let itemWidth = layout.messageCollectionView.frame.width - layout.messageCollectionView.contentInset.left - layout.messageCollectionView.contentInset.right
         let itemHeight = layout.messageCollectionView.contentInset.top + cellTopSize.height + messageTopSize.height + messageSize.height + messageBottomSize.height + cellBottomSize.height + layout.messageCollectionView.contentInset.bottom
         
         return CGSize(width: itemWidth, height: itemHeight)
     }
+    
+    
+    
+    // MARK: - Private calculate size for items each view
+    private func cellTopSize(at indexPath: IndexPath, of message: MessageType) -> CGSize {
+        return CGSize(width: message.messageId.textWidth(), height: 30)
+    }
+    
+    private func messageTopSize(at indexPath: IndexPath, of message: MessageType) -> CGSize {
+        
+        return CGSize(width: message.sender.displayName.textWidth(),
+                      height: 30)
+    }
+    
+    private func messageContainerSize(at indexPath: IndexPath, of message: MessageType) -> CGSize {
+        
+        var size: CGSize = .zero
+        
+        switch message.kind {
+        case .text:
+            let labelSize = messageLabelSize(of: message)
+            
+            size = CGSize(width: labelSize.width + bubbleImageIncomingPadding.horizontal,
+                          height: labelSize.height + bubbleImageIncomingPadding.vertical)
+        default:
+            break
+        }
+        
+        return size
+    }
+    
+    private func messageLabelSize(of message: MessageType) -> CGSize {
+        guard case .text(let text) = message.kind else { return .zero }
+        let collectionView = layout.messageCollectionView
+        let limitWidth = collectionView.frame.width * 0.6
+        
+        var textWidth: CGFloat = 0
+        let aWidth = text.textWidth()
+        let oneLineHeight: CGFloat = 25
+        
+        textWidth = min(limitWidth, aWidth)
+        
+        let textHeight = max(text.height(withConstrainedWidth: textWidth, font: UIFont.systemFont(ofSize: 17)) + 5, oneLineHeight)
+        
+        return CGSize(width: textWidth, height: textHeight)
+    }
+    
+    private func messageBottomSize(at indexPath: IndexPath, of message: MessageType) -> CGSize {
+        return CGSize(width: message.sentDate.textWidth(font: UIFont.systemFont(ofSize: 12)), height: 15)
+    }
+    
+    private func cellBottomSize(at indexPath: IndexPath, of message: MessageType) -> CGSize {
+        return CGSize(width: "已讀".textWidth(font: UIFont.systemFont(ofSize: 12)), height: 15)
+    }
+
 }
+

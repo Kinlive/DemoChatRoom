@@ -22,8 +22,6 @@ class CustomCollectionViewLayout: UICollectionViewFlowLayout {
         return self.collectionView as! MessageCollectionView
     }()
     
-    weak var messageLayoutDelegate: MessageLayoutDelegate?
-    
     override func layoutAttributesForElements(in rect: CGRect) -> [UICollectionViewLayoutAttributes]? {
         guard let attributesArray = super.layoutAttributesForElements(in: rect) as? [CustomLayoutAttributes] else { return nil }
         

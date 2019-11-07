@@ -38,7 +38,7 @@ class MessageBaseViewController: UIViewController {
     
     lazy var messageLayout: CustomCollectionViewLayout = {
        let layout = CustomCollectionViewLayout()
-        layout.messageLayoutDelegate = self
+        //layout.messageLayoutDelegate = self
         return layout
     }()
     
@@ -139,49 +139,6 @@ extension MessageBaseViewController: MessageDataSource {
     
 }
 
-// MARK: - Message layout delegate
-extension MessageBaseViewController: MessageLayoutDelegate {
-    func cellTopSize(at indexPath: IndexPath, of message: MessageType) -> CGSize {
-        return CGSize(width: message.messageId.textWidth(), height: 30)
-    }
-    
-    func messageTopSize(at indexPath: IndexPath, of message: MessageType) -> CGSize {
-        
-        return CGSize(width: message.sender.displayName.textWidth(),
-                      height: 30)
-    }
-    
-    func messageLabelSize(at indexPath: IndexPath, of message: MessageType) -> CGSize {
-        var size: CGSize = .zero
-        var textWidth = messageCollectionView.frame.width * 0.7
-        
-        
-        switch message.kind {
-        case .text(let text):
-            let aWidth = text.textWidth()
-            
-            textWidth = min(textWidth, aWidth)
-            
-            let textHeight = max(text.height(withConstrainedWidth: textWidth, font: UIFont.systemFont(ofSize: 17)) + 5, 30)
-            
-            size = CGSize(width: textWidth, height: textHeight)
-        default:
-            break
-        }
-        
-        return size
-    }
-    
-    func messageBottomSize(at indexPath: IndexPath, of message: MessageType) -> CGSize {
-        return CGSize(width: message.sentDate.textWidth(font: UIFont.systemFont(ofSize: 12)), height: 15)
-    }
-    
-    func cellBottomSize(at indexPath: IndexPath, of message: MessageType) -> CGSize {
-        return CGSize(width: "已讀".textWidth(font: UIFont.systemFont(ofSize: 12)), height: 15)
-    }
-    
-}
-
 
 let randomMessage: [String] = [
 "1111111111111111111",
@@ -193,10 +150,3 @@ let randomMessage: [String] = [
 "7777777777777777777"
 ]
 
-extension String {
-    // this is get text total width on one line
-    func textWidth(font: UIFont = .systemFont(ofSize: 17)) -> CGFloat {
-        return self.size(withAttributes: [NSAttributedString.Key.font : font]).width + 4
-        
-    }
-}
