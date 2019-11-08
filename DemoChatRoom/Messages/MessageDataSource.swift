@@ -13,6 +13,18 @@ protocol MessageDataSource: class {
     func message(at indexPath: IndexPath, in collectionView: MessageCollectionView) -> MessageType
     func numberOfItems() -> Int
     
+    func customCell(for message: MessageType, at indexPath: IndexPath, in collectionView: MessageCollectionView) -> BaseChatViewCell
+    
+    func customCellCalculator(for message: MessageType, at indexPath: IndexPath, in collectionView: MessageCollectionView) -> BaseMessageCalculator
+    
+}
+
+extension MessageDataSource {
+    func customCell(for message: MessageType, at indexPath: IndexPath, in collectionView: MessageCollectionView) -> BaseChatViewCell { fatalError("Must override this method if use custom of MessageType") }
+    
+    func customCellCalculator(for message: MessageType, at indexPath: IndexPath, in collectionView: MessageCollectionView) -> BaseMessageCalculator {
+        fatalError("Must override this method if use custom of MessageType")
+    }
 }
 
 

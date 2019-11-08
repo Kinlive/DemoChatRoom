@@ -26,6 +26,8 @@ class MessageCollectionView: UICollectionView {
     func configure() {
         self.register(BaseChatViewCell.self, forCellWithReuseIdentifier: "BaseChatViewCell")
         self.register(TextMessageCell.self, forCellWithReuseIdentifier: "TextMessageCell")
+        
+        
     }
     
 }

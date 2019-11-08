@@ -19,6 +19,7 @@ class MessageBaseViewController: UIViewController {
         collection.backgroundColor = UIColor.lightGray.withAlphaComponent(0.8)
         collection.delegate = self
         collection.dataSource = self
+        collection.register(CustomMessageCell.self, forCellWithReuseIdentifier: "CustomMessageCell")
         return collection
     }()
     
@@ -64,7 +65,13 @@ class MessageBaseViewController: UIViewController {
         let randomSender: SenderType = isPreviousUser ? botSender : selfSender
         isPreviousUser = !isPreviousUser
         
-        let message = MyMessage(kind: .text(randomMsg), sender: randomSender, messageId: Date().longDate(), sentDate: Date().prettyDate())
+        var message: MyMessage
+            
+        if randomNumber % 2 == 0 {
+             message = MyMessage(kind: .text(randomMsg), sender: randomSender, messageId: Date().longDate(), sentDate: Date().prettyDate())
+        } else {
+            message = MyMessage(kind: .custom("Test for Custom pass"), sender: botSender, messageId: Date().longDate(), sentDate: Date().prettyDate())
+        }
         
         dataSources.append(message)
     }
@@ -112,15 +119,20 @@ extension MessageBaseViewController: UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let dataSource = messageCollectionView.messageDataSource
-            else { return BaseChatViewCell() }
+            else { fatalError("MessageDataSource not be nil") }
+        guard let collectionView = collectionView as? MessageCollectionView else { fatalError("Not a MessageCollectionView") }
         
-        let message = dataSource.message(at: indexPath, in: collectionView as! MessageCollectionView)
+        let message = dataSource.message(at: indexPath, in: collectionView)
         
         switch message.kind {
         case .text:
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "TextMessageCell", for: indexPath) as! TextMessageCell
             cell.configure(message: message)
             return cell
+        
+        case .custom:
+            return customCell(for: message, at: indexPath, in: messageCollectionView)
+            
         default: break
         }
         
@@ -132,6 +144,7 @@ extension MessageBaseViewController: UICollectionViewDataSource {
 
 // MARK: - Message DataSource
 extension MessageBaseViewController: MessageDataSource {
+    
     func isFromUser(message: MessageType) -> Bool {
         return message.sender.displayName == selfSender.displayName
     }
@@ -144,6 +157,16 @@ extension MessageBaseViewController: MessageDataSource {
         return dataSources.count
     }
     
+    func customCell(for message: MessageType, at indexPath: IndexPath, in collectionView: MessageCollectionView) -> BaseChatViewCell {
+        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "CustomMessageCell", for: indexPath) as? CustomMessageCell else { return BaseChatViewCell() }
+        cell.configure(message: message)
+        return cell
+    }
+    
+    
+    func customCellCalculator(for message: MessageType, at indexPath: IndexPath, in collectionView: MessageCollectionView) -> BaseMessageCalculator {
+        return CustomMessageCalculator(layout: messageLayout)
+    }
     
 }
 

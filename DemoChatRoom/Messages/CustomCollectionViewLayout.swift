@@ -28,8 +28,12 @@ class CustomCollectionViewLayout: UICollectionViewFlowLayout {
         
         for attributes in attributesArray where attributes.representedElementCategory == .cell {
             // calculate each attributes rect.
-            textCalculator.configure(attributes: attributes)
+            //textCalculator.configure(attributes: attributes)
+            let indexPath = attributes.indexPath
+            let message = messageDataSource.message(at: indexPath, in: messageCollectionView)
             
+            let calculator = calculatorWith(message: message, at: indexPath)
+            calculator.configure(attributes: attributes)
         }
         return attributesArray
     }
@@ -40,10 +44,30 @@ class CustomCollectionViewLayout: UICollectionViewFlowLayout {
         return calculator
     }()
     
-    //lazy var CustomMessageCalculator
+    lazy var customCalculator: CustomMessageCalculator = {
+        let calculator = CustomMessageCalculator(layout: self)
+        return calculator
+    }()
     
+    func calculatorWith(message: MessageType, at indexPath: IndexPath) -> BaseMessageCalculator {
+        switch message.kind {
+        case .text:
+            return textCalculator
+        
+        case .custom:
+            return messageDataSource.customCellCalculator(for: message, at: indexPath, in: messageCollectionView)
+            
+        default: return textCalculator
+        }
+    }
     
     func sizeForItem(at indexPath: IndexPath) -> CGSize {
+        let message = messageDataSource.message(at: indexPath, in: messageCollectionView)
+        switch message.kind {
+        case .custom:
+            return customCalculator.sizeForItem(at: indexPath)
+        default: break
+        }
         return textCalculator.sizeForItem(at: indexPath)
     }
 }

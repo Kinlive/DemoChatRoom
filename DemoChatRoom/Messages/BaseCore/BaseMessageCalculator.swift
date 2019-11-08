@@ -100,7 +100,6 @@ class BaseMessageCalculator {
         let isFromUser = dataSource.isFromUser(message: message)
         
         attributes.avatarPosition = isFromUser ? outgoingAvatarPosition : incomingAvatarPosition
-        attributes.avatarSize = isFromUser ? outgoingAvatarSize : incomingAvatarSize
         
         attributes.cellTopAlignment = isFromUser ? outgoingCellTopAlignment : incomingCellTopAlignment
         attributes.messageTopAlignment = isFromUser ? outgoingMessageTopAlignment : incomingMessageTopAlignment
@@ -109,6 +108,7 @@ class BaseMessageCalculator {
         attributes.cellBottomAlignment = isFromUser ? outgotingCellBottomAlignment : incomingCellBottomAlignment
         
         // calculate size
+        attributes.avatarSize = avatarSize(isFromUser: isFromUser)
         attributes.cellTopSize = cellTopSize(at: indexPath, of: message)
         attributes.messageTopSize = messageTopSize(at: indexPath, of: message)
         
@@ -139,13 +139,17 @@ class BaseMessageCalculator {
     }
     
     
+    // MARK: - calculate size for items each view
     
-    // MARK: - Private calculate size for items each view
-    private func cellTopSize(at indexPath: IndexPath, of message: MessageType) -> CGSize {
+    open func avatarSize(isFromUser: Bool) -> CGSize {
+        return isFromUser ? outgoingAvatarSize : incomingAvatarSize
+    }
+    
+    open func cellTopSize(at indexPath: IndexPath, of message: MessageType) -> CGSize {
         return CGSize(width: message.messageId.textWidth(), height: 30)
     }
     
-    private func messageTopSize(at indexPath: IndexPath, of message: MessageType) -> CGSize {
+    open func messageTopSize(at indexPath: IndexPath, of message: MessageType) -> CGSize {
         
         return CGSize(width: message.sender.displayName.textWidth(),
                       height: 30)
@@ -157,11 +161,11 @@ class BaseMessageCalculator {
     }
     
     
-    private func messageBottomSize(at indexPath: IndexPath, of message: MessageType) -> CGSize {
+    open func messageBottomSize(at indexPath: IndexPath, of message: MessageType) -> CGSize {
         return CGSize(width: message.sentDate.textWidth(font: UIFont.systemFont(ofSize: 12)), height: 15)
     }
     
-    private func cellBottomSize(at indexPath: IndexPath, of message: MessageType) -> CGSize {
+    open func cellBottomSize(at indexPath: IndexPath, of message: MessageType) -> CGSize {
         return CGSize(width: "已讀".textWidth(font: UIFont.systemFont(ofSize: 12)), height: 15)
     }
 
