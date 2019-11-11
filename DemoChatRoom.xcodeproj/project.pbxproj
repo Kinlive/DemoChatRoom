@@ -20,10 +20,10 @@
 		FE31D8F9236ABCD3004E8A74 /* ChatCollectionLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE31D8F8236ABCD3004E8A74 /* ChatCollectionLayout.swift */; };
 		FE31D8FB236AC104004E8A74 /* BaseCollectionViewFlowLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE31D8FA236AC104004E8A74 /* BaseCollectionViewFlowLayout.swift */; };
 		FE31D8FD236AC7DE004E8A74 /* MessageType.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE31D8FC236AC7DE004E8A74 /* MessageType.swift */; };
-		FE31D8FF236ACC29004E8A74 /* Extension+String.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE31D8FE236ACC29004E8A74 /* Extension+String.swift */; };
+		FE31D8FF236ACC29004E8A74 /* String+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE31D8FE236ACC29004E8A74 /* String+Extension.swift */; };
 		FE31D901236AD641004E8A74 /* MyUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE31D900236AD641004E8A74 /* MyUser.swift */; };
 		FE31D903236AD685004E8A74 /* MyMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE31D902236AD685004E8A74 /* MyMessage.swift */; };
-		FE31D905236C0219004E8A74 /* Extension+UIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE31D904236C0219004E8A74 /* Extension+UIView.swift */; };
+		FE31D905236C0219004E8A74 /* UIView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE31D904236C0219004E8A74 /* UIView+Extension.swift */; };
 		FE31D907236C1625004E8A74 /* BaseChatViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE31D906236C1624004E8A74 /* BaseChatViewCell.swift */; };
 		FE31D90923700C4A004E8A74 /* CustomCollectionViewLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE31D90823700C4A004E8A74 /* CustomCollectionViewLayout.swift */; };
 		FE31D90B23701A0B004E8A74 /* BaseMessageAttributes.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE31D90A23701A0B004E8A74 /* BaseMessageAttributes.swift */; };
@@ -33,12 +33,19 @@
 		FE31D91323714C48004E8A74 /* MessageCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE31D91223714C48004E8A74 /* MessageCollectionView.swift */; };
 		FE31D91723715C0E004E8A74 /* MessageBaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE31D91623715C0E004E8A74 /* MessageBaseViewController.swift */; };
 		FE82BDCC23729B8500BB78AD /* MessageContainerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE82BDCB23729B8500BB78AD /* MessageContainerView.swift */; };
-		FE82BDCE2373C54000BB78AD /* Extension+UIImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE82BDCD2373C54000BB78AD /* Extension+UIImage.swift */; };
-		FE82BDD02373C8B900BB78AD /* Extension+UIEdgeInsets.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE82BDCF2373C8B900BB78AD /* Extension+UIEdgeInsets.swift */; };
+		FE82BDCE2373C54000BB78AD /* UIImage+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE82BDCD2373C54000BB78AD /* UIImage+Extension.swift */; };
+		FE82BDD02373C8B900BB78AD /* UIEdgeInsets+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE82BDCF2373C8B900BB78AD /* UIEdgeInsets+Extension.swift */; };
 		FE82BDD22373CB6E00BB78AD /* CustomMessageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE82BDD12373CB6E00BB78AD /* CustomMessageCell.swift */; };
 		FE82BDD52373CDC800BB78AD /* TextMessageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE82BDD42373CDC800BB78AD /* TextMessageCell.swift */; };
 		FE82BDD92373F27000BB78AD /* CustomMessageCalculator.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE82BDD82373F27000BB78AD /* CustomMessageCalculator.swift */; };
-		FE82BDDE237411A300BB78AD /* Extension+CGSize.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE82BDDD237411A300BB78AD /* Extension+CGSize.swift */; };
+		FE82BDDE237411A300BB78AD /* CGSize+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE82BDDD237411A300BB78AD /* CGSize+Extension.swift */; };
+		FE82BE0E23751B0D00BB78AD /* Date+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE82BE0D23751B0C00BB78AD /* Date+Extension.swift */; };
+		FE82BE4F2378F07600BB78AD /* bubble_received@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = FE82BE482378F07600BB78AD /* bubble_received@3x.png */; };
+		FE82BE502378F07600BB78AD /* bubble_received@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = FE82BE492378F07600BB78AD /* bubble_received@2x.png */; };
+		FE82BE512378F07600BB78AD /* bubble_received.png in Resources */ = {isa = PBXBuildFile; fileRef = FE82BE4A2378F07600BB78AD /* bubble_received.png */; };
+		FE82BE522378F07600BB78AD /* bubble_sent.png in Resources */ = {isa = PBXBuildFile; fileRef = FE82BE4C2378F07600BB78AD /* bubble_sent.png */; };
+		FE82BE532378F07600BB78AD /* bubble_sent@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = FE82BE4D2378F07600BB78AD /* bubble_sent@3x.png */; };
+		FE82BE542378F07600BB78AD /* bubble_sent@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = FE82BE4E2378F07600BB78AD /* bubble_sent@2x.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -78,10 +85,10 @@
 		FE31D8F8236ABCD3004E8A74 /* ChatCollectionLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatCollectionLayout.swift; sourceTree = "<group>"; };
 		FE31D8FA236AC104004E8A74 /* BaseCollectionViewFlowLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseCollectionViewFlowLayout.swift; sourceTree = "<group>"; };
 		FE31D8FC236AC7DE004E8A74 /* MessageType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageType.swift; sourceTree = "<group>"; };
-		FE31D8FE236ACC29004E8A74 /* Extension+String.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extension+String.swift"; sourceTree = "<group>"; };
+		FE31D8FE236ACC29004E8A74 /* String+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Extension.swift"; sourceTree = "<group>"; };
 		FE31D900236AD641004E8A74 /* MyUser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyUser.swift; sourceTree = "<group>"; };
 		FE31D902236AD685004E8A74 /* MyMessage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyMessage.swift; sourceTree = "<group>"; };
-		FE31D904236C0219004E8A74 /* Extension+UIView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extension+UIView.swift"; sourceTree = "<group>"; };
+		FE31D904236C0219004E8A74 /* UIView+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Extension.swift"; sourceTree = "<group>"; };
 		FE31D906236C1624004E8A74 /* BaseChatViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseChatViewCell.swift; sourceTree = "<group>"; };
 		FE31D90823700C4A004E8A74 /* CustomCollectionViewLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomCollectionViewLayout.swift; sourceTree = "<group>"; };
 		FE31D90A23701A0B004E8A74 /* BaseMessageAttributes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseMessageAttributes.swift; sourceTree = "<group>"; };
@@ -91,12 +98,19 @@
 		FE31D91223714C48004E8A74 /* MessageCollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageCollectionView.swift; sourceTree = "<group>"; };
 		FE31D91623715C0E004E8A74 /* MessageBaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageBaseViewController.swift; sourceTree = "<group>"; };
 		FE82BDCB23729B8500BB78AD /* MessageContainerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageContainerView.swift; sourceTree = "<group>"; };
-		FE82BDCD2373C54000BB78AD /* Extension+UIImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extension+UIImage.swift"; sourceTree = "<group>"; };
-		FE82BDCF2373C8B900BB78AD /* Extension+UIEdgeInsets.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extension+UIEdgeInsets.swift"; sourceTree = "<group>"; };
+		FE82BDCD2373C54000BB78AD /* UIImage+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+Extension.swift"; sourceTree = "<group>"; };
+		FE82BDCF2373C8B900BB78AD /* UIEdgeInsets+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIEdgeInsets+Extension.swift"; sourceTree = "<group>"; };
 		FE82BDD12373CB6E00BB78AD /* CustomMessageCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomMessageCell.swift; sourceTree = "<group>"; };
 		FE82BDD42373CDC800BB78AD /* TextMessageCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextMessageCell.swift; sourceTree = "<group>"; };
 		FE82BDD82373F27000BB78AD /* CustomMessageCalculator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomMessageCalculator.swift; sourceTree = "<group>"; };
-		FE82BDDD237411A300BB78AD /* Extension+CGSize.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extension+CGSize.swift"; sourceTree = "<group>"; };
+		FE82BDDD237411A300BB78AD /* CGSize+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CGSize+Extension.swift"; sourceTree = "<group>"; };
+		FE82BE0D23751B0C00BB78AD /* Date+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+Extension.swift"; sourceTree = "<group>"; };
+		FE82BE482378F07600BB78AD /* bubble_received@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "bubble_received@3x.png"; sourceTree = "<group>"; };
+		FE82BE492378F07600BB78AD /* bubble_received@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "bubble_received@2x.png"; sourceTree = "<group>"; };
+		FE82BE4A2378F07600BB78AD /* bubble_received.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bubble_received.png; sourceTree = "<group>"; };
+		FE82BE4C2378F07600BB78AD /* bubble_sent.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bubble_sent.png; sourceTree = "<group>"; };
+		FE82BE4D2378F07600BB78AD /* bubble_sent@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "bubble_sent@3x.png"; sourceTree = "<group>"; };
+		FE82BE4E2378F07600BB78AD /* bubble_sent@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "bubble_sent@2x.png"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -148,7 +162,6 @@
 			isa = PBXGroup;
 			children = (
 				FE31D91823726E43004E8A74 /* Messages */,
-				FE31D8F7236ABC9D004E8A74 /* Tools */,
 				FE31D8F2236AB2C9004E8A74 /* ChatView */,
 				FE31D8C2236A8CE6004E8A74 /* AppDelegate.swift */,
 				FE31D8C4236A8CE6004E8A74 /* SceneDelegate.swift */,
@@ -182,6 +195,8 @@
 		FE31D8F2236AB2C9004E8A74 /* ChatView */ = {
 			isa = PBXGroup;
 			children = (
+				FE31D8FA236AC104004E8A74 /* BaseCollectionViewFlowLayout.swift */,
+				FE31D8F8236ABCD3004E8A74 /* ChatCollectionLayout.swift */,
 				FE31D8F3236AB452004E8A74 /* ChatViewCell.swift */,
 				FE31D8F4236AB452004E8A74 /* ChatViewCell.xib */,
 			);
@@ -191,13 +206,12 @@
 		FE31D8F7236ABC9D004E8A74 /* Tools */ = {
 			isa = PBXGroup;
 			children = (
-				FE31D8FA236AC104004E8A74 /* BaseCollectionViewFlowLayout.swift */,
-				FE31D8F8236ABCD3004E8A74 /* ChatCollectionLayout.swift */,
-				FE31D8FE236ACC29004E8A74 /* Extension+String.swift */,
-				FE31D904236C0219004E8A74 /* Extension+UIView.swift */,
-				FE82BDCD2373C54000BB78AD /* Extension+UIImage.swift */,
-				FE82BDCF2373C8B900BB78AD /* Extension+UIEdgeInsets.swift */,
-				FE82BDDD237411A300BB78AD /* Extension+CGSize.swift */,
+				FE31D8FE236ACC29004E8A74 /* String+Extension.swift */,
+				FE31D904236C0219004E8A74 /* UIView+Extension.swift */,
+				FE82BDCD2373C54000BB78AD /* UIImage+Extension.swift */,
+				FE82BDCF2373C8B900BB78AD /* UIEdgeInsets+Extension.swift */,
+				FE82BDDD237411A300BB78AD /* CGSize+Extension.swift */,
+				FE82BE0D23751B0C00BB78AD /* Date+Extension.swift */,
 			);
 			path = Tools;
 			sourceTree = "<group>";
@@ -205,6 +219,8 @@
 		FE31D91823726E43004E8A74 /* Messages */ = {
 			isa = PBXGroup;
 			children = (
+				FE82BE332378EFCC00BB78AD /* Resource */,
+				FE31D8F7236ABC9D004E8A74 /* Tools */,
 				FE82BDDA2373F31D00BB78AD /* BaseCore */,
 				FE82BDD32373CDB200BB78AD /* Cells */,
 				FE31D900236AD641004E8A74 /* MyUser.swift */,
@@ -238,6 +254,43 @@
 				FE31D90C23701B6F004E8A74 /* BaseMessageCalculator.swift */,
 			);
 			path = BaseCore;
+			sourceTree = "<group>";
+		};
+		FE82BE332378EFCC00BB78AD /* Resource */ = {
+			isa = PBXGroup;
+			children = (
+				FE82BE342378EFE100BB78AD /* Images */,
+			);
+			path = Resource;
+			sourceTree = "<group>";
+		};
+		FE82BE342378EFE100BB78AD /* Images */ = {
+			isa = PBXGroup;
+			children = (
+				FE82BE472378F07600BB78AD /* bubble_received.imageset 09-26-07-535.imageset */,
+				FE82BE4B2378F07600BB78AD /* bubble_sent.imageset 09-26-07-541.imageset */,
+			);
+			path = Images;
+			sourceTree = "<group>";
+		};
+		FE82BE472378F07600BB78AD /* bubble_received.imageset 09-26-07-535.imageset */ = {
+			isa = PBXGroup;
+			children = (
+				FE82BE482378F07600BB78AD /* bubble_received@3x.png */,
+				FE82BE492378F07600BB78AD /* bubble_received@2x.png */,
+				FE82BE4A2378F07600BB78AD /* bubble_received.png */,
+			);
+			path = "bubble_received.imageset 09-26-07-535.imageset";
+			sourceTree = "<group>";
+		};
+		FE82BE4B2378F07600BB78AD /* bubble_sent.imageset 09-26-07-541.imageset */ = {
+			isa = PBXGroup;
+			children = (
+				FE82BE4C2378F07600BB78AD /* bubble_sent.png */,
+				FE82BE4D2378F07600BB78AD /* bubble_sent@3x.png */,
+				FE82BE4E2378F07600BB78AD /* bubble_sent@2x.png */,
+			);
+			path = "bubble_sent.imageset 09-26-07-541.imageset";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -345,9 +398,15 @@
 			buildActionMask = 2147483647;
 			files = (
 				FE31D8F6236AB452004E8A74 /* ChatViewCell.xib in Resources */,
+				FE82BE502378F07600BB78AD /* bubble_received@2x.png in Resources */,
+				FE82BE532378F07600BB78AD /* bubble_sent@3x.png in Resources */,
+				FE82BE512378F07600BB78AD /* bubble_received.png in Resources */,
 				FE31D8CF236A8CEB004E8A74 /* LaunchScreen.storyboard in Resources */,
 				FE31D8CC236A8CEB004E8A74 /* Assets.xcassets in Resources */,
+				FE82BE542378F07600BB78AD /* bubble_sent@2x.png in Resources */,
+				FE82BE4F2378F07600BB78AD /* bubble_received@3x.png in Resources */,
 				FE31D8CA236A8CE6004E8A74 /* Main.storyboard in Resources */,
+				FE82BE522378F07600BB78AD /* bubble_sent.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -372,22 +431,23 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				FE82BDCE2373C54000BB78AD /* Extension+UIImage.swift in Sources */,
+				FE82BDCE2373C54000BB78AD /* UIImage+Extension.swift in Sources */,
 				FE31D911237115F3004E8A74 /* MessageDataSource.swift in Sources */,
 				FE31D91723715C0E004E8A74 /* MessageBaseViewController.swift in Sources */,
-				FE31D8FF236ACC29004E8A74 /* Extension+String.swift in Sources */,
+				FE31D8FF236ACC29004E8A74 /* String+Extension.swift in Sources */,
 				FE82BDD92373F27000BB78AD /* CustomMessageCalculator.swift in Sources */,
 				FE31D907236C1625004E8A74 /* BaseChatViewCell.swift in Sources */,
 				FE82BDCC23729B8500BB78AD /* MessageContainerView.swift in Sources */,
-				FE82BDD02373C8B900BB78AD /* Extension+UIEdgeInsets.swift in Sources */,
+				FE82BDD02373C8B900BB78AD /* UIEdgeInsets+Extension.swift in Sources */,
+				FE82BE0E23751B0D00BB78AD /* Date+Extension.swift in Sources */,
 				FE31D8FD236AC7DE004E8A74 /* MessageType.swift in Sources */,
 				FE31D90B23701A0B004E8A74 /* BaseMessageAttributes.swift in Sources */,
 				FE82BDD22373CB6E00BB78AD /* CustomMessageCell.swift in Sources */,
 				FE31D8F5236AB452004E8A74 /* ChatViewCell.swift in Sources */,
 				FE31D903236AD685004E8A74 /* MyMessage.swift in Sources */,
 				FE31D90D23701B6F004E8A74 /* BaseMessageCalculator.swift in Sources */,
-				FE82BDDE237411A300BB78AD /* Extension+CGSize.swift in Sources */,
-				FE31D905236C0219004E8A74 /* Extension+UIView.swift in Sources */,
+				FE82BDDE237411A300BB78AD /* CGSize+Extension.swift in Sources */,
+				FE31D905236C0219004E8A74 /* UIView+Extension.swift in Sources */,
 				FE31D8C7236A8CE6004E8A74 /* ViewController.swift in Sources */,
 				FE31D8F9236ABCD3004E8A74 /* ChatCollectionLayout.swift in Sources */,
 				FE31D90F23702793004E8A74 /* TextMessageCalculator.swift in Sources */,
