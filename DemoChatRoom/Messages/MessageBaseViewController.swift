@@ -20,7 +20,7 @@ class MessageBaseViewController: UIViewController {
         collection.delegate = self
         collection.dataSource = self
         //當滾到最上方時會將鍵盤收起
-        collection.keyboardDismissMode = .interactive
+        //collection.keyboardDismissMode = .interactive
         collection.register(CustomMessageCell.self, forCellWithReuseIdentifier: "CustomMessageCell")
         return collection
     }()
@@ -42,15 +42,14 @@ class MessageBaseViewController: UIViewController {
     var shouldScrollToBottom: Bool = true
     
     override var inputAccessoryView: UIView? {
-        messageAccessoryView.autoresizingMask = .flexibleHeight
         messageAccessoryView.backgroundColor = .systemBlue
         messageAccessoryView.delegate = self
         return messageAccessoryView
     }
     
-    override var canBecomeFirstResponder: Bool { return true }
-    
-    override var canResignFirstResponder: Bool { return true }
+    override var canBecomeFirstResponder: Bool { return needBecomeFirstResponder }
+    private var needBecomeFirstResponder: Bool = false
+    private var isFirstEntry: Bool = true
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -58,9 +57,17 @@ class MessageBaseViewController: UIViewController {
         addKeyboardObservers()
     }
     
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-       
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        
+        
+        // this delay display the inputAccessoryView when didAppear
+        if isFirstEntry {
+            isFirstEntry = false
+            needBecomeFirstResponder = true
+            becomeFirstResponder()
+        }
+        
     }
     
     override func viewWillLayoutSubviews() {
@@ -153,7 +160,6 @@ class MessageBaseViewController: UIViewController {
     }
     
     @objc private func keyboardWillHide(notification: Notification) {
-
         adjustContentForKeyboard(shown: false, notification: notification)
     }
     
@@ -207,7 +213,9 @@ class MessageBaseViewController: UIViewController {
     
     public func scrollToBottom(animated: Bool = false) {
         view.layoutIfNeeded()
-        messageCollectionView.setContentOffset(bottomOffset(), animated: animated)
+        if messageCollectionView.contentOffset.y != bottomOffset().y {
+            messageCollectionView.setContentOffset(bottomOffset(), animated: animated)
+        }
         
 //        let collectionViewContentHeight = messageCollectionView.contentSize.height
 //
@@ -298,9 +306,18 @@ extension MessageBaseViewController: MessageDataSource {
 extension MessageBaseViewController: CustomInputAccessoryViewDelegate {
     func onPassButtonClicked(_ sender: UIButton, textView: UITextView) {
         sendMessage()
-        // FIXME: - will warning for First responder warning on rejected resignFirstResponder when being removed from hierarchy.
-        textView.becomeFirstResponder()
-        textView.resignFirstResponder()
+        
+        // fixed warning with rejected resignFirstResponder when 'textView' being removed from hierarchy
+        // 當textView.resignFirstResponder()後, 系統會再詢問一次他的上一層view,
+        //   此處指MessageBaseViewController.canBecomeFirstResponder,
+        //   而導致warning, 此處做法為先將父層的canBecomeFirstResponder設為false,
+        //   待textView.resign以後再將父層的canBecomeFirstResponder指定回來, 解決warning的狀況。
+        needBecomeFirstResponder = false // <-- 1.
+        messageAccessoryView.typingTextView.resignFirstResponder() // <-- 2.
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.2) {
+            self.needBecomeFirstResponder = true // <-- 3.
+            self.becomeFirstResponder() // <-- 4.
+        }
     }
     
     func onOptionsButtonClicked(_ sender: UIButton) {

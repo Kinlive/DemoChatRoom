@@ -30,20 +30,21 @@ class CustomInputAccessoryView: UIView {
     
     override init(frame: CGRect) {
         super.init(frame: frame)
-        
+        autoresizingMask = .flexibleHeight
         initFromNib()
         setupDefaults()
     }
     
     required init?(coder: NSCoder) {
         super.init(coder: coder)
+        autoresizingMask = .flexibleHeight
         initFromNib()
         setupDefaults()
     }
     
     // MARK: - Methods [Private]
     private func setupDefaults() {
-        autoresizingMask = .flexibleHeight
+        
         typingTextView.delegate = self
         typingTextView.isScrollEnabled = false
         passButton.addTarget(self, action: #selector(onPassClicked), for: .touchUpInside)
@@ -52,6 +53,7 @@ class CustomInputAccessoryView: UIView {
     }
     
     private func initFromNib() {
+      
       let className = type(of: self)
       let nibName = NSStringFromClass(className).components(separatedBy: ".").last
       baseView = UINib(nibName: nibName!, bundle: Bundle(for: className)).instantiate(withOwner: self, options: nil).first as? UIView
@@ -67,11 +69,13 @@ class CustomInputAccessoryView: UIView {
         let size = CGSize(width: typingTextView.bounds.width, height: CGFloat.greatestFiniteMagnitude)
         let textSize = typingTextView.sizeThatFits(size)
         
-        return CGSize(width: bounds.width, height: textSize.height)
+        return CGSize(width: UIView.noIntrinsicMetric, height: textSize.height)
     }
     
     @objc private func onPassClicked() {
         delegate?.onPassButtonClicked(passButton, textView: typingTextView)
+        typingTextView.text = ""
+        typingPlaceholderLabel.isHidden = false
     }
     
     @objc private func onOptionsClicked() {
@@ -86,5 +90,10 @@ extension CustomInputAccessoryView: UITextViewDelegate {
     func textViewDidChange(_ textView: UITextView) {
         typingPlaceholderLabel.isHidden = !textView.text.isEmpty
         self.invalidateIntrinsicContentSize()
+    }
+    
+    
+    func textViewDidBeginEditing(_ textView: UITextView) {
+
     }
 }
