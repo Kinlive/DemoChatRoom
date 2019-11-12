@@ -132,8 +132,8 @@ class BaseMessageCalculator {
         let cellBottomSize = self.cellBottomSize(at: indexPath, of: message)
         
         let itemWidth = layout.messageCollectionView.frame.width - layout.messageCollectionView.contentInset.left - layout.messageCollectionView.contentInset.right
-        let itemHeight = layout.messageCollectionView.contentInset.top + cellTopSize.height + messageTopSize.height + messageSize.height +
-            messageBottomSize.height + cellBottomSize.height + layout.messageCollectionView.contentInset.bottom
+        let itemHeight = cellTopSize.height + messageTopSize.height + messageSize.height +
+            messageBottomSize.height + cellBottomSize.height
         
         return CGSize(width: itemWidth, height: itemHeight)
     }

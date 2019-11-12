@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14868" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14824"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="CustomInputAccessoryView" customModule="DemoChatRoom" customModuleProvider="target">
+            <connections>
+                <outlet property="optionsButton" destination="iML-QT-6Ok" id="FqB-1X-V2Y"/>
+                <outlet property="passButton" destination="FGX-GY-8zx" id="2uu-35-vDI"/>
+                <outlet property="typingPlaceholderLabel" destination="AX9-Cn-0Nx" id="ndz-iO-d3M"/>
+                <outlet property="typingTextView" destination="Phl-p0-nDG" id="npV-xc-o5q"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB">
+            <rect key="frame" x="0.0" y="0.0" width="447" height="170"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <view contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9SV-MH-lyB">
+                    <rect key="frame" x="0.0" y="0.0" width="447" height="136"/>
+                    <subviews>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="iML-QT-6Ok">
+                            <rect key="frame" x="8" y="48" width="40" height="40"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="40" id="Qs3-9Z-R2u"/>
+                                <constraint firstAttribute="width" constant="40" id="t2l-zx-T0u"/>
+                            </constraints>
+                            <state key="normal" image="command" catalog="system"/>
+                        </button>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="FGX-GY-8zx">
+                            <rect key="frame" x="399" y="48" width="40" height="40"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="40" id="BbS-4H-zsx"/>
+                                <constraint firstAttribute="width" constant="40" id="ziU-UH-YCr"/>
+                            </constraints>
+                            <state key="normal" image="paperplane" catalog="system"/>
+                        </button>
+                        <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="Phl-p0-nDG">
+                            <rect key="frame" x="56" y="0.0" width="335" height="136"/>
+                            <color key="backgroundColor" systemColor="systemTealColor" red="0.35294117650000001" green="0.7843137255" blue="0.98039215690000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            <constraints>
+                                <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="50" id="GpO-H4-4D1"/>
+                            </constraints>
+                            <color key="textColor" systemColor="labelColor" cocoaTouchSystemColor="darkTextColor"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                            <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                        </textView>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Type messages" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="AX9-Cn-0Nx">
+                            <rect key="frame" x="63" y="57.5" width="119.5" height="21"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                            <color key="textColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                    </subviews>
+                    <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                    <constraints>
+                        <constraint firstAttribute="bottom" secondItem="Phl-p0-nDG" secondAttribute="bottom" id="0XG-No-3s8"/>
+                        <constraint firstItem="FGX-GY-8zx" firstAttribute="centerY" secondItem="9SV-MH-lyB" secondAttribute="centerY" id="5B5-pj-iUz"/>
+                        <constraint firstAttribute="trailing" secondItem="FGX-GY-8zx" secondAttribute="trailing" constant="8" id="7c8-eD-pDn"/>
+                        <constraint firstItem="Phl-p0-nDG" firstAttribute="top" secondItem="9SV-MH-lyB" secondAttribute="top" id="CWi-uF-pHs"/>
+                        <constraint firstItem="AX9-Cn-0Nx" firstAttribute="centerY" secondItem="9SV-MH-lyB" secondAttribute="centerY" id="HS5-DB-D4q"/>
+                        <constraint firstItem="iML-QT-6Ok" firstAttribute="centerY" secondItem="FGX-GY-8zx" secondAttribute="centerY" id="Jr9-5G-8TZ"/>
+                        <constraint firstItem="iML-QT-6Ok" firstAttribute="leading" secondItem="9SV-MH-lyB" secondAttribute="leading" constant="8" id="Lfa-o7-wqM"/>
+                        <constraint firstItem="FGX-GY-8zx" firstAttribute="leading" secondItem="Phl-p0-nDG" secondAttribute="trailing" constant="8" id="PF6-BP-Zc7"/>
+                        <constraint firstItem="Phl-p0-nDG" firstAttribute="leading" secondItem="iML-QT-6Ok" secondAttribute="trailing" constant="8" id="gLV-yO-bft"/>
+                        <constraint firstItem="AX9-Cn-0Nx" firstAttribute="leading" secondItem="iML-QT-6Ok" secondAttribute="trailing" constant="15" id="uGz-VU-xPQ"/>
+                    </constraints>
+                </view>
+            </subviews>
+            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <constraints>
+                <constraint firstItem="9SV-MH-lyB" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="4vH-4e-tb5"/>
+                <constraint firstItem="9SV-MH-lyB" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="KC1-fI-URe"/>
+                <constraint firstAttribute="trailing" secondItem="9SV-MH-lyB" secondAttribute="trailing" id="XP6-tQ-Oqb"/>
+                <constraint firstItem="JCR-Q7-6DE" firstAttribute="bottom" secondItem="9SV-MH-lyB" secondAttribute="bottom" id="jO0-da-Wx4"/>
+            </constraints>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <viewLayoutGuide key="safeArea" id="JCR-Q7-6DE"/>
+            <point key="canvasLocation" x="231.15942028985509" y="-297.99107142857139"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="command" catalog="system" width="64" height="58"/>
+        <image name="paperplane" catalog="system" width="64" height="60"/>
+    </resources>
+</document>

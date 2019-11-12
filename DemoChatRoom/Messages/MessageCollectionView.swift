@@ -30,4 +30,9 @@ class MessageCollectionView: UICollectionView {
         
     }
     
+    
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        endEditing(true)
+        super.touchesBegan(touches, with: event)
+    }
 }

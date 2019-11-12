@@ -46,6 +46,9 @@
 		FE82BE522378F07600BB78AD /* bubble_sent.png in Resources */ = {isa = PBXBuildFile; fileRef = FE82BE4C2378F07600BB78AD /* bubble_sent.png */; };
 		FE82BE532378F07600BB78AD /* bubble_sent@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = FE82BE4D2378F07600BB78AD /* bubble_sent@3x.png */; };
 		FE82BE542378F07600BB78AD /* bubble_sent@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = FE82BE4E2378F07600BB78AD /* bubble_sent@2x.png */; };
+		FE82BE562378F76A00BB78AD /* Notification+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE82BE552378F76A00BB78AD /* Notification+Extension.swift */; };
+		FE82BE59237950FA00BB78AD /* CustomInputAccessoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE82BE58237950FA00BB78AD /* CustomInputAccessoryView.swift */; };
+		FE82BE5B2379511400BB78AD /* CustomInputAccessoryView.xib in Resources */ = {isa = PBXBuildFile; fileRef = FE82BE5A2379511400BB78AD /* CustomInputAccessoryView.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -111,6 +114,9 @@
 		FE82BE4C2378F07600BB78AD /* bubble_sent.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bubble_sent.png; sourceTree = "<group>"; };
 		FE82BE4D2378F07600BB78AD /* bubble_sent@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "bubble_sent@3x.png"; sourceTree = "<group>"; };
 		FE82BE4E2378F07600BB78AD /* bubble_sent@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "bubble_sent@2x.png"; sourceTree = "<group>"; };
+		FE82BE552378F76A00BB78AD /* Notification+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Notification+Extension.swift"; sourceTree = "<group>"; };
+		FE82BE58237950FA00BB78AD /* CustomInputAccessoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomInputAccessoryView.swift; sourceTree = "<group>"; };
+		FE82BE5A2379511400BB78AD /* CustomInputAccessoryView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CustomInputAccessoryView.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -212,6 +218,7 @@
 				FE82BDCF2373C8B900BB78AD /* UIEdgeInsets+Extension.swift */,
 				FE82BDDD237411A300BB78AD /* CGSize+Extension.swift */,
 				FE82BE0D23751B0C00BB78AD /* Date+Extension.swift */,
+				FE82BE552378F76A00BB78AD /* Notification+Extension.swift */,
 			);
 			path = Tools;
 			sourceTree = "<group>";
@@ -219,6 +226,7 @@
 		FE31D91823726E43004E8A74 /* Messages */ = {
 			isa = PBXGroup;
 			children = (
+				FE82BE57237950CE00BB78AD /* InputAccessoryView */,
 				FE82BE332378EFCC00BB78AD /* Resource */,
 				FE31D8F7236ABC9D004E8A74 /* Tools */,
 				FE82BDDA2373F31D00BB78AD /* BaseCore */,
@@ -291,6 +299,15 @@
 				FE82BE4E2378F07600BB78AD /* bubble_sent@2x.png */,
 			);
 			path = "bubble_sent.imageset 09-26-07-541.imageset";
+			sourceTree = "<group>";
+		};
+		FE82BE57237950CE00BB78AD /* InputAccessoryView */ = {
+			isa = PBXGroup;
+			children = (
+				FE82BE58237950FA00BB78AD /* CustomInputAccessoryView.swift */,
+				FE82BE5A2379511400BB78AD /* CustomInputAccessoryView.xib */,
+			);
+			path = InputAccessoryView;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -401,6 +418,7 @@
 				FE82BE502378F07600BB78AD /* bubble_received@2x.png in Resources */,
 				FE82BE532378F07600BB78AD /* bubble_sent@3x.png in Resources */,
 				FE82BE512378F07600BB78AD /* bubble_received.png in Resources */,
+				FE82BE5B2379511400BB78AD /* CustomInputAccessoryView.xib in Resources */,
 				FE31D8CF236A8CEB004E8A74 /* LaunchScreen.storyboard in Resources */,
 				FE31D8CC236A8CEB004E8A74 /* Assets.xcassets in Resources */,
 				FE82BE542378F07600BB78AD /* bubble_sent@2x.png in Resources */,
@@ -449,6 +467,8 @@
 				FE82BDDE237411A300BB78AD /* CGSize+Extension.swift in Sources */,
 				FE31D905236C0219004E8A74 /* UIView+Extension.swift in Sources */,
 				FE31D8C7236A8CE6004E8A74 /* ViewController.swift in Sources */,
+				FE82BE562378F76A00BB78AD /* Notification+Extension.swift in Sources */,
+				FE82BE59237950FA00BB78AD /* CustomInputAccessoryView.swift in Sources */,
 				FE31D8F9236ABCD3004E8A74 /* ChatCollectionLayout.swift in Sources */,
 				FE31D90F23702793004E8A74 /* TextMessageCalculator.swift in Sources */,
 				FE31D8C3236A8CE6004E8A74 /* AppDelegate.swift in Sources */,
